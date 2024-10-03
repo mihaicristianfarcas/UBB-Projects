@@ -1,0 +1,7 @@
+Adi/Neagra,1/1,3/0
+Marcel/Alba,4/3,5/1
+Costel/Galbena,2/4,4/0
+Ioana/Cyana,6/1,5/1
+da/Verdea,3/2,1/0
+nu/Magenta,1/2,3/0
+da/da,1/2,3/0
