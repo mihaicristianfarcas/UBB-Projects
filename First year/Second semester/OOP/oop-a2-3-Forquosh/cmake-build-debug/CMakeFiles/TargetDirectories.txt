@@ -1,0 +1,3 @@
+C:/Users/mihai/Documents/GitHub/a2-3-Forquosh/cmake-build-debug/CMakeFiles/a2_3_Forquosh.dir
+C:/Users/mihai/Documents/GitHub/a2-3-Forquosh/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mihai/Documents/GitHub/a2-3-Forquosh/cmake-build-debug/CMakeFiles/rebuild_cache.dir
