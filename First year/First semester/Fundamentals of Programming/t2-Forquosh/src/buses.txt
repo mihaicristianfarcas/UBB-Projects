@@ -1,0 +1,5 @@
+1, 1, abc, 3
+2, 1, Volvo Electric, 13
+3, 5, Iveco V40, 7
+4, 6, Scania, 10
+5, 7, Guleryuz, 3
