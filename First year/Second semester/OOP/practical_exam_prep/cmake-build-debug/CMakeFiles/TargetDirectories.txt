@@ -1,0 +1,5 @@
+C:/Users/mihai/CLionProjects/seminar7/cmake-build-debug/CMakeFiles/seminar7.dir
+C:/Users/mihai/CLionProjects/seminar7/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mihai/CLionProjects/seminar7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/mihai/CLionProjects/seminar7/cmake-build-debug/CMakeFiles/seminar7_autogen_timestamp_deps.dir
+C:/Users/mihai/CLionProjects/seminar7/cmake-build-debug/CMakeFiles/seminar7_autogen.dir

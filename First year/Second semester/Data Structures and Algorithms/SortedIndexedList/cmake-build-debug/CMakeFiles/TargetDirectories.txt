@@ -1,0 +1,3 @@
+C:/Users/mihai/CLionProjects/SortedIndexedList/cmake-build-debug/CMakeFiles/SortedIndexedList.dir
+C:/Users/mihai/CLionProjects/SortedIndexedList/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mihai/CLionProjects/SortedIndexedList/cmake-build-debug/CMakeFiles/rebuild_cache.dir

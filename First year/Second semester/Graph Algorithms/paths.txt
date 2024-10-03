@@ -1,0 +1,41 @@
+GRAPH1K
+
+Please give the source vertex: 1
+Please give the destination vertex: 100
+Path length: 6
+Shortest path:
+ [1, 5, 487, 175, 699, 624, 100]
+
+Please give the source vertex: 100
+Please give the destination vertex: 1
+Path length: 5
+Shortest path:
+ [100, 416, 354, 865, 109, 1]
+
+GRAPH10K
+
+Please give the source vertex: 1
+Please give the destination vertex: 100
+Path length: 8
+Shortest path:
+ [1, 3300, 2607, 523, 6311, 5359, 9794, 5173, 100]
+
+Please give the source vertex: 100
+Please give the destination vertex: 1
+Path length: 7
+Shortest path:
+ [100, 2398, 3054, 5232, 8217, 2478, 7151, 1]
+
+GRAPH100K
+
+Please give the source vertex: 1
+Please give the destination vertex: 100
+Path length: 8
+Shortest path:
+ [1, 17024, 27471, 14969, 3075, 4156, 32753, 14973, 100]
+
+Please give the source vertex: 100
+Please give the destination vertex: 1
+Path length: 8
+Shortest path:
+ [100, 44340, 54527, 6606, 53263, 95930, 98655, 58288, 1]

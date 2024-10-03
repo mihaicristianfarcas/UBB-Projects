@@ -1,0 +1,3 @@
+C:/Users/mihai/CLionProjects/examprep/cmake-build-debug/CMakeFiles/examprep.dir
+C:/Users/mihai/CLionProjects/examprep/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mihai/CLionProjects/examprep/cmake-build-debug/CMakeFiles/rebuild_cache.dir

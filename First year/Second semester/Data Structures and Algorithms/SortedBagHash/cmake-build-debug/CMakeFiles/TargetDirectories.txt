@@ -1,0 +1,3 @@
+C:/Users/mihai/CLionProjects/SortedBagHash/cmake-build-debug/CMakeFiles/SortedBagHash.dir
+C:/Users/mihai/CLionProjects/SortedBagHash/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mihai/CLionProjects/SortedBagHash/cmake-build-debug/CMakeFiles/rebuild_cache.dir
