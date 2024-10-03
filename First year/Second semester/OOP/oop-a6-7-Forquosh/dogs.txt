@@ -1,0 +1,10 @@
+Golden Retriever,Bella,2,https://www.purina.ro/sites/default/files/2023-05/BREED_golden_retriever.jpg
+Labrador Retriever,Aky,3,https://www.vidavetcare.com/wp-content/uploads/sites/234/2022/04/labrador-retriever-dog-breed-info.jpeg
+German Shepherd,Ares,5,https://beyondthedogtraining.com/wp-content/uploads/german-shepherd-dog-768x512.jpg
+Yorkshire Terrier,Cupcake,1,https://cdn.sanity.io/images/4ij0poqn/production/d23ed7c34d2d78b5af0050c5302e04e9c8bc048a-1200x700.jpg
+Poodle,Lady,4,https://image.petmd.com/files/styles/978x550/public/2023-01/toy-poodle.jpg
+Bulldog,Leo,6,https://dogtime.com/wp-content/uploads/sites/12/2011/01/GettyImages-168620477-e1691273341205.jpg?w=1024
+Doberman,Max,8,https://www.animaland.ro/wp-content/uploads/2022/04/Dobernam-closeup-620x800.jpg
+Rottweiler,Rex,2,https://gomagcdn.ro/domains2/epetshop.ro/files/files/caine-rotweiler-656483.webp
+Beagle,Puffy,3,https://www.zooplus.ro/ghid/wp-content/uploads/2021/07/caine-beagle.webp
+Pekingese,Jessie,8,https://www.purina.co.uk/sites/default/files/2022-07/Pekingese.jpg?itok=lUhQR_w1
