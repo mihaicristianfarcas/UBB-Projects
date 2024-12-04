@@ -1,0 +1,334 @@
+ExeStack:
+[(int v;(v=4;(while(v > 0) {(print(v);v=v-1)};print(v))))]
+
+SymTable:
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v))), int v]
+
+SymTable:
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v)))]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[(while(v > 0) {(print(v);v=v-1)};print(v)), v=4]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[(while(v > 0) {(print(v);v=v-1)};print(v))]
+
+SymTable:
+v -> 4
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}]
+
+SymTable:
+v -> 4
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
+
+SymTable:
+v -> 4
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
+
+SymTable:
+v -> 4
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
+
+SymTable:
+v -> 4
+
+Heap:
+
+Out:
+[4]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}]
+
+SymTable:
+v -> 3
+
+Heap:
+
+Out:
+[4]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
+
+SymTable:
+v -> 3
+
+Heap:
+
+Out:
+[4]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
+
+SymTable:
+v -> 3
+
+Heap:
+
+Out:
+[4]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
+
+SymTable:
+v -> 3
+
+Heap:
+
+Out:
+[4, 3]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}]
+
+SymTable:
+v -> 2
+
+Heap:
+
+Out:
+[4, 3]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
+
+SymTable:
+v -> 2
+
+Heap:
+
+Out:
+[4, 3]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
+
+SymTable:
+v -> 2
+
+Heap:
+
+Out:
+[4, 3]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
+
+SymTable:
+v -> 2
+
+Heap:
+
+Out:
+[4, 3, 2]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}]
+
+SymTable:
+v -> 1
+
+Heap:
+
+Out:
+[4, 3, 2]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
+
+SymTable:
+v -> 1
+
+Heap:
+
+Out:
+[4, 3, 2]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
+
+SymTable:
+v -> 1
+
+Heap:
+
+Out:
+[4, 3, 2]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
+
+SymTable:
+v -> 1
+
+Heap:
+
+Out:
+[4, 3, 2, 1]
+
+FileTable:
+
+
+ExeStack:
+[print(v), while(v > 0) {(print(v);v=v-1)}]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[4, 3, 2, 1]
+
+FileTable:
+
+
+ExeStack:
+[print(v)]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[4, 3, 2, 1]
+
+FileTable:
+
+
+ExeStack:
+[]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[4, 3, 2, 1, 0]
+
+FileTable:
+
+
