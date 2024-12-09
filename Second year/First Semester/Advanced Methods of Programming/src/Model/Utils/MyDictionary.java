@@ -48,7 +48,7 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     }
 
     @Override
-    public Collection<Value> getAllValues() {
+    public Collection<V> getAllValues() {
         return dict.values();
     }
 
@@ -79,5 +79,14 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     @Override
     public Map<K, V> getContent() {
         return dict;
+    }
+
+    @Override
+    public MyIDictionary<K, V> deepCopy() {
+        MyDictionary<K, V> newDict = new MyDictionary<>();
+        for (K key : dict.keySet()) {
+            newDict.update(key, dict.get(key));
+        }
+        return newDict;
     }
 }

@@ -33,7 +33,6 @@ public class MyFileRepository implements MyIRepository {
         repository.add(program);
     }
 
-    // TODO check this method
     @Override
     public void logPrgStateExec(PrgState prgState) throws IOException {
         PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));

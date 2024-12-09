@@ -1,0 +1,367 @@
+ID:
+10
+ExeStack:
+[(Ref(int) a;(v=10;(new(a, 22);(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a))))))), int v]
+
+SymTable:
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(Ref(int) a;(v=10;(new(a, 22);(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a)))))))]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(v=10;(new(a, 22);(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a)))))), Ref(int) a]
+
+SymTable:
+v -> 0
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(v=10;(new(a, 22);(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a))))))]
+
+SymTable:
+a -> (0, int)
+v -> 0
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(new(a, 22);(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a))))), v=10]
+
+SymTable:
+a -> (0, int)
+v -> 0
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(new(a, 22);(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a)))))]
+
+SymTable:
+a -> (0, int)
+v -> 10
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a)))), new(a, 22)]
+
+SymTable:
+a -> (0, int)
+v -> 10
+
+Heap:
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))));(print(v);print(readHeap(a))))]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 22
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(print(v);print(readHeap(a))), fork((writeHeap(a, 30);(v=32;(print(v);print(readHeap(a))))))]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 22
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[(print(v);print(readHeap(a)))]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 22
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[(writeHeap(a, 30);(v=32;(print(v);print(readHeap(a)))))]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 22
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[print(readHeap(a)), print(v)]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 22
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[(v=32;(print(v);print(readHeap(a)))), writeHeap(a, 30)]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 22
+
+Out:
+[]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[print(readHeap(a))]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 30
+
+Out:
+[10]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[(v=32;(print(v);print(readHeap(a))))]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 30
+
+Out:
+[10]
+
+FileTable:
+
+
+ID:
+10
+ExeStack:
+[]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 30
+
+Out:
+[10, 30]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[(print(v);print(readHeap(a))), v=32]
+
+SymTable:
+a -> (1, int)
+v -> 10
+
+Heap:
+1 -> 30
+
+Out:
+[10, 30]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[(print(v);print(readHeap(a)))]
+
+SymTable:
+a -> (1, int)
+v -> 32
+
+Heap:
+1 -> 30
+
+Out:
+[10, 30]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[print(readHeap(a)), print(v)]
+
+SymTable:
+a -> (1, int)
+v -> 32
+
+Heap:
+1 -> 30
+
+Out:
+[10, 30]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[print(readHeap(a))]
+
+SymTable:
+a -> (1, int)
+v -> 32
+
+Heap:
+1 -> 30
+
+Out:
+[10, 30, 32]
+
+FileTable:
+
+
+ID:
+11
+ExeStack:
+[]
+
+SymTable:
+a -> (1, int)
+v -> 32
+
+Heap:
+1 -> 30
+
+Out:
+[10, 30, 32, 30]
+
+FileTable:
+
+

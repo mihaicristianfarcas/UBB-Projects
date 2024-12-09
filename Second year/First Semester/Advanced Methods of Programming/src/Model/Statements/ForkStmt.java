@@ -1,18 +1,35 @@
 package Model.Statements;
-
 import Model.PrgState;
-
-import java.io.IOException;
+import Model.Utils.MyIDictionary;
+import Model.Values.Value;
 
 public class ForkStmt implements IStmt {
+    private final IStmt forkBody;
+
+    public ForkStmt(IStmt forkBody) {
+        this.forkBody = forkBody;
+    }
 
     @Override
-    public PrgState execute(PrgState state) throws RuntimeException, IOException {
-        return null;
+    public PrgState execute(PrgState parentState) {
+        PrgState newPrgState = new PrgState(forkBody);
+
+        MyIDictionary<String, Value> clonedSymTable = parentState.getSymTable().deepCopy();
+        newPrgState.setSymTable(clonedSymTable);
+        newPrgState.setHeap(parentState.getHeap());
+        newPrgState.setFileTable(parentState.getFileTable());
+        newPrgState.setOut(parentState.getOut());
+
+        return newPrgState;
+    }
+
+    @Override
+    public String toString() {
+        return "fork(" + forkBody.toString() + ")";
     }
 
     @Override
     public IStmt deepCopy() {
-        return null;
+        return new ForkStmt(forkBody.deepCopy());
     }
 }

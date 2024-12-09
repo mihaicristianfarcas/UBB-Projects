@@ -35,7 +35,7 @@ public class AssignStmt implements IStmt {
         }
         else throw new UndefinedVariableException(id);
 
-        return state;
+        return null;
     }
 
     @Override

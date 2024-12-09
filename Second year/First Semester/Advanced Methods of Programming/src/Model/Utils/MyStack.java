@@ -52,6 +52,6 @@ public class MyStack<T> implements MyIStack<T> {
 
     @Override
     public String toString() {
-        return stack.toString() + "\n";
+        return stack.toString();
     }
 }

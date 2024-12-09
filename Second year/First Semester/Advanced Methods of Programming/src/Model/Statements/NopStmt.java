@@ -8,7 +8,7 @@ public class NopStmt implements IStmt {
     public PrgState execute(PrgState state) throws EmptyExecutionStackException {
         if(state.getExeStack().isEmpty())
             throw new EmptyExecutionStackException();
-        return state;
+        return null;
     }
 
     @Override

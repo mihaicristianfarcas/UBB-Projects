@@ -41,7 +41,7 @@ public class NewStmt implements IStmt {
                 throw new MyInvalidTypeException("Declared type of variable '" + varName + "' is not a RefType");
         }
         else throw new UndefinedVariableException(varName);
-        return state;
+        return null;
     }
 
     @Override

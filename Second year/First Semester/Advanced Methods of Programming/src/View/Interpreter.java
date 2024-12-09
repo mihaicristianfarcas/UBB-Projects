@@ -228,24 +228,24 @@ public class Interpreter {
 //      int v;
 //      v = 4;
 //      (
-//          while(v > 0)
-//          print(v);
-//          v = v - 1
-//       );
+//       while(v > 0)
+//       print(v);
+//       v = v - 1
+//      );
 //      print(v);
         IStmt ex9 = new CompStmt(
-                new VarDeclStmt("v", new IntType()), // Declare int v
+                new VarDeclStmt("v", new IntType()),
                 new CompStmt(
-                        new AssignStmt("v", new ValueExp(new IntValue(4))), // v = 4
+                        new AssignStmt("v", new ValueExp(new IntValue(4))),
                         new CompStmt(
                                 new WhileStmt(
-                                        new RelExp(">", new VarExp("v"), new ValueExp(new IntValue(0))), // while (v > 0)
+                                        new RelExp(">", new VarExp("v"), new ValueExp(new IntValue(0))),
                                         new CompStmt(
-                                                new PrintStmt(new VarExp("v")), // print(v)
-                                                new AssignStmt("v", new ArithExp('-', new VarExp("v"), new ValueExp(new IntValue(1)))) // v = v - 1
+                                                new PrintStmt(new VarExp("v")),
+                                                new AssignStmt("v", new ArithExp('-', new VarExp("v"), new ValueExp(new IntValue(1))))
                                         )
                                 ),
-                                new PrintStmt(new VarExp("v")) // print(v)
+                                new PrintStmt(new VarExp("v"))
                         )
                 )
         );
@@ -253,6 +253,51 @@ public class Interpreter {
         PrgState prgState9 = new PrgState(ex9);
         repository9.addProgram(prgState9);
         MyController controller9 = new MyController(repository9);
+
+        // int v;
+        // Ref int a;
+        // v = 10;
+        // new(a, 22);
+        // fork(wH(a, 30);
+        // v = 32;
+        // print(v);
+        // print(rH(a)));
+        // print(v);
+        // print(rH(a));
+        IStmt ex10 = new CompStmt(
+                new VarDeclStmt("v", new IntType()),
+                new CompStmt(
+                        new VarDeclStmt("a", new RefType(new IntType())),
+                        new CompStmt(
+                                new AssignStmt("v", new ValueExp(new IntValue(10))),
+                                new CompStmt(
+                                        new NewStmt("a", new ValueExp(new IntValue(22))),
+                                        new CompStmt(
+                                                new ForkStmt(
+                                                        new CompStmt(
+                                                                new WriteHeapStmt("a", new ValueExp(new IntValue(30))),
+                                                                new CompStmt(
+                                                                        new AssignStmt("v", new ValueExp(new IntValue(32))),
+                                                                        new CompStmt(
+                                                                                new PrintStmt(new VarExp("v")),
+                                                                                new PrintStmt(new ReadHeapExp(new VarExp("a")))
+                                                                        )
+                                                                )
+                                                        )
+                                                ),
+                                                new CompStmt(
+                                                        new PrintStmt(new VarExp("v")),
+                                                        new PrintStmt(new ReadHeapExp(new VarExp("a")))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        MyIRepository repository10 = new MyFileRepository("log10test.txt");
+        PrgState prgState10 = new PrgState(ex10);
+        repository10.addProgram(prgState10);
+        MyController controller10 = new MyController(repository10);
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
@@ -265,6 +310,7 @@ public class Interpreter {
         menu.addCommand(new RunExampleCommand("7", ex7.toString(), controller7));
         menu.addCommand(new RunExampleCommand("8", ex8.toString(), controller8));
         menu.addCommand(new RunExampleCommand("9", ex9.toString(), controller9));
+        menu.addCommand(new RunExampleCommand("10", ex10.toString(), controller10));
         menu.show();
     }
 }

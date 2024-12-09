@@ -22,7 +22,7 @@ public class VarDeclStmt implements IStmt {
             throw new PredeclaredVariableException(name);
         }
         symTbl.update(name, type.defaultValue());
-        return state;
+        return null;
     }
 
     @Override

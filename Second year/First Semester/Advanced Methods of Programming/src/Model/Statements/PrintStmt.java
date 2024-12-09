@@ -21,7 +21,7 @@ public class PrintStmt implements IStmt {
         MyIHeap<Value> heap = state.getHeap();
 
         out.add(exp.eval(symTable, heap));
-        return state;
+        return null;
     }
 
     @Override

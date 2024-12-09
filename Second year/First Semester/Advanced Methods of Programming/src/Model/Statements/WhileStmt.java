@@ -32,7 +32,7 @@ public class WhileStmt implements IStmt {
             throw new MyInvalidTypeException("condition expression is not a boolean");
         }
 
-        return state;
+        return null;
     }
 
     @Override

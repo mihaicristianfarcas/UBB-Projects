@@ -11,10 +11,11 @@ public interface MyIDictionary<K, V> {
     boolean isDefined(K key);
     void remove(K key);
     Iterable<K> getAllKeys();
-    Collection<Value> getAllValues();
+    Collection<V> getAllValues();
     void clear();
     int size();
     boolean isEmpty();
     String toString();
     Map<K, V> getContent();
+    MyIDictionary<K, V> deepCopy();
 }

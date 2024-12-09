@@ -45,7 +45,7 @@ public class OpenRFileStmt implements IStmt {
             throw new FileException(exception.toString());
         }
 
-        return state;
+        return null;
     }
 
     @Override

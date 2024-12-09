@@ -36,7 +36,7 @@ public class IfStmt implements IStmt {
         else {
             throw new InvalidExpressionException("condition expression is not a boolean");
         }
-        return state;
+        return null;
     }
 
     @Override

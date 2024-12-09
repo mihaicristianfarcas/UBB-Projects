@@ -30,10 +30,10 @@ public class WriteHeapStmt implements IStmt {
             if (val instanceof RefValue ref) {
                 int address = ref.getAddress();
                 if (heap.isDefined(address)) {
-                    Value expval = exp.eval(symTbl, heap);
+                    Value expVal = exp.eval(symTbl, heap);
                     Value heapVal = heap.lookup(address);
-                    if (heapVal.getType().equals(expval.getType())) {
-                        heap.update(address, expval);
+                    if (heapVal.getType().equals(expVal.getType())) {
+                        heap.update(address, expVal);
                     } else {
                         throw new MyInvalidTypeException("The type of the value in the heap does not match the type of the value to be written");
                     }
@@ -47,7 +47,7 @@ public class WriteHeapStmt implements IStmt {
             throw new InvalidKeyException("The variable is not defined in the symbol table");
         }
 
-        return state;
+        return null;
     }
 
     @Override

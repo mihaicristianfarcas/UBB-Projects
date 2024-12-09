@@ -1,14 +1,10 @@
 package Controller;
 
-import Model.Exceptions.EmptyExecutionStackException;
 import Model.PrgState;
-import Model.Statements.IStmt;
 import Model.Utils.MyIHeap;
-import Model.Utils.MyIStack;
 import Model.Values.RefValue;
 import Model.Values.Value;
 import Repository.MyIRepository;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
@@ -16,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class MyController {
     private final MyIRepository repository;
-    private boolean displayFlag = false;
     private ExecutorService executor;
 
     public MyController(MyIRepository repository) {
@@ -32,7 +27,7 @@ public class MyController {
         List<Integer> symTableAddresses = symTableValues.stream()
                 .filter(v -> v instanceof RefValue)
                 .map(v -> ((RefValue) v).getAddress())
-                .collect(Collectors.toList());
+                .toList();
 
         Queue<Integer> addressQueue = new LinkedList<>(symTableAddresses);
         Set<Integer> allAddresses = new HashSet<>(symTableAddresses);
@@ -57,22 +52,12 @@ public class MyController {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    // TODO check this method and compare it to the one in Lab 8
     private void oneStepForAllPrg(List<PrgState> prgStates) throws InterruptedException {
-
-        prgStates.forEach(prg -> {
-            try {
-                repository.logPrgStateExec(prg);
-            } catch (IOException e) {
-                throw new RuntimeException("Error logging program state", e);
-            }
-        });
 
         List<Callable<PrgState>> callList = prgStates.stream()
                 .map(prg -> (Callable<PrgState>) prg::oneStep)
                 .collect(Collectors.toList());
 
-        // Execute the callables and collect the results
         List<PrgState> newPrgStates = executor.invokeAll(callList).stream()
                 .map(future -> {
                     try {
@@ -97,7 +82,6 @@ public class MyController {
         repository.setPrgList(prgStates);
     }
 
-    // TODO check this method and compare it to the one in Lab 8
     public void allStep() throws InterruptedException {
         executor = Executors.newFixedThreadPool(2);
 
@@ -106,6 +90,7 @@ public class MyController {
         while (!prgList.isEmpty()) {
             oneStepForAllPrg(prgList);
 
+            // conservative garbage collector
             prgList.forEach(prg -> {
                 List<Integer> referencedAddresses = getAllAddresses(
                         prg.getSymTable().getAllValues(),
@@ -128,6 +113,6 @@ public class MyController {
     }
 
     public void setDisplayFlag() {
-        displayFlag = true;
+        boolean displayFlag = true;
     }
 }
