@@ -4,9 +4,9 @@
 ; e.g. (A (B) (C (D) (E))) A has children B, C and C has children D, E
 ; Return the level of a node X in a tree. The level of the root element is 0.
 
-; find-level(root, L, R) node, level) = NIL, n = 0
-;				      = level, node = root
-;				      = find-level(L, node, level + 1) or find-level(R, node, level + 1), node != root
+; find-level((root, L, R), node, level) = NIL, n = 0
+;				                                = level, node = root
+;				                                = find-level(L, node, level + 1) or find-level(R, node, level + 1), node != root
 
 
 (defun find-level (tree node &optional (level 0))
