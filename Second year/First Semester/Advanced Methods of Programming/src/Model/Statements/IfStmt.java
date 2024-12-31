@@ -1,7 +1,10 @@
 package Model.Statements;
 import Model.Exceptions.InvalidExpressionException;
+import Model.Exceptions.MyInvalidTypeException;
 import Model.Expressions.Exp;
 import Model.PrgState;
+import Model.Types.BoolType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Utils.MyIStack;
@@ -47,5 +50,18 @@ public class IfStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new IfStmt(exp.deepCopy(), thenS.deepCopy(), elseS.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type expType = exp.typeCheck(typeEnv);
+        if (expType.equals(new BoolType())) {
+            thenS.typeCheck(typeEnv.deepCopy());
+            elseS.typeCheck(typeEnv.deepCopy());
+            return typeEnv;
+        }
+        else {
+            throw new MyInvalidTypeException("If: condition expression is not a boolean");
+        }
     }
 }

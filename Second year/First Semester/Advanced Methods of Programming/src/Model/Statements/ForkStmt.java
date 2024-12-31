@@ -1,5 +1,7 @@
 package Model.Statements;
+import Model.Exceptions.MyInvalidTypeException;
 import Model.PrgState;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Values.Value;
 
@@ -31,5 +33,11 @@ public class ForkStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new ForkStmt(forkBody.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        forkBody.typeCheck(typeEnv.deepCopy());
+        return typeEnv;
     }
 }

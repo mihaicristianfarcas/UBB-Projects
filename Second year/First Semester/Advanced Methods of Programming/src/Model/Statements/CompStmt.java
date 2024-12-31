@@ -1,6 +1,9 @@
 package Model.Statements;
 
+import Model.Exceptions.MyInvalidTypeException;
 import Model.PrgState;
+import Model.Types.Type;
+import Model.Utils.MyIDictionary;
 import Model.Utils.MyIStack;
 
 public class CompStmt implements IStmt {
@@ -28,5 +31,10 @@ public class CompStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new CompStmt(first.deepCopy(), second.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        return second.typeCheck(first.typeCheck(typeEnv));
     }
 }

@@ -1,4 +1,5 @@
 package Model.Statements;
+import Model.Exceptions.MyInvalidTypeException;
 import Model.Exceptions.PredeclaredVariableException;
 import Model.PrgState;
 import Model.Types.IntType;
@@ -33,5 +34,11 @@ public class VarDeclStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new VarDeclStmt(name, new IntType());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        typeEnv.update(name, type);
+        return typeEnv;
     }
 }

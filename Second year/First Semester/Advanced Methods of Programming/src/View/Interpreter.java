@@ -4,10 +4,9 @@ import Controller.MyController;
 import Model.Expressions.*;
 import Model.PrgState;
 import Model.Statements.*;
-import Model.Types.BoolType;
-import Model.Types.IntType;
-import Model.Types.RefType;
-import Model.Types.StringType;
+import Model.Types.*;
+import Model.Utils.MyDictionary;
+import Model.Utils.MyIDictionary;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
 import Model.Values.StringValue;
@@ -21,6 +20,8 @@ public class Interpreter {
         // int v;
         // print(v);
         IStmt ex1 = new CompStmt(new VarDeclStmt("v", new IntType()), new PrintStmt(new VarExp("v")));
+        MyIDictionary<String, Type> typeEnv1 = new MyDictionary<>();
+        ex1.typeCheck(typeEnv1);
         PrgState prgState1 = new PrgState(ex1);
         MyIRepository repository1 = new MyFileRepository("log1.txt");
         repository1.addProgram(prgState1);
@@ -42,6 +43,8 @@ public class Interpreter {
                                 new CompStmt(
                                         new AssignStmt("b",new ArithExp('+',new VarExp("a"), new ValueExp(new IntValue(1)))),
                                         new PrintStmt(new VarExp("b"))))));
+        MyIDictionary<String, Type> typeEnv2 = new MyDictionary<>();
+        ex2.typeCheck(typeEnv2);
         PrgState prgState2 = new PrgState(ex2);
         MyIRepository repository2 = new MyFileRepository("log2.txt");
         repository2.addProgram(prgState2);
@@ -59,6 +62,8 @@ public class Interpreter {
                                 new CompStmt(new IfStmt(new VarExp("a"),new AssignStmt("v",new ValueExp(new
                                         IntValue(2))), new AssignStmt("v", new ValueExp(new IntValue(3)))), new PrintStmt(new
                                         VarExp("v"))))));
+        MyIDictionary<String, Type> typeEnv3 = new MyDictionary<>();
+        ex3.typeCheck(typeEnv3);
         PrgState prgState3 = new PrgState(ex3);
         MyIRepository repository3 = new MyFileRepository("log3.txt");
         repository3.addProgram(prgState3);
@@ -98,6 +103,8 @@ public class Interpreter {
                         )
                 )
         );
+        MyIDictionary<String, Type> typeEnv4 = new MyDictionary<>();
+        ex4.typeCheck(typeEnv4);
         PrgState prgState4 = new PrgState(ex4);
         MyIRepository repository4 = new MyFileRepository("log4.txt");
         repository4.addProgram(prgState4);
@@ -126,8 +133,10 @@ public class Interpreter {
                         )
                 )
         );
-        MyIRepository repository5 = new MyFileRepository("log5.txt");
+        MyIDictionary<String, Type> typeEnv5 = new MyDictionary<>();
+        ex5.typeCheck(typeEnv5);
         PrgState prgState5 = new PrgState(ex5);
+        MyIRepository repository5 = new MyFileRepository("log5.txt");
         repository5.addProgram(prgState5);
         MyController controller5 = new MyController(repository5);
 
@@ -159,8 +168,10 @@ public class Interpreter {
                         )
                 )
         );
-        MyIRepository repository6 = new MyFileRepository("log6.txt");
+        MyIDictionary<String, Type> typeEnv6 = new MyDictionary<>();
+        ex6.typeCheck(typeEnv6);
         PrgState prgState6 = new PrgState(ex6);
+        MyIRepository repository6 = new MyFileRepository("log6.txt");
         repository6.addProgram(prgState6);
         MyController controller6 = new MyController(repository6);
 
@@ -189,8 +200,10 @@ public class Interpreter {
                         )
                 )
         );
-        MyIRepository repository7 = new MyFileRepository("log7.txt");
+        MyIDictionary<String, Type> typeEnv7 = new MyDictionary<>();
+        ex7.typeCheck(typeEnv7);
         PrgState prgState7 = new PrgState(ex7);
+        MyIRepository repository7 = new MyFileRepository("log7.txt");
         repository7.addProgram(prgState7);
         MyController controller7 = new MyController(repository7);
 
@@ -220,8 +233,10 @@ public class Interpreter {
                         )
                 )
         );
-        MyIRepository repository8 = new MyFileRepository("log8.txt");
+        MyIDictionary<String, Type> typeEnv8 = new MyDictionary<>();
+        ex8.typeCheck(typeEnv8);
         PrgState prgState8 = new PrgState(ex8);
+        MyIRepository repository8 = new MyFileRepository("log8.txt");
         repository8.addProgram(prgState8);
         MyController controller8 = new MyController(repository8);
 
@@ -249,6 +264,8 @@ public class Interpreter {
                         )
                 )
         );
+        MyIDictionary<String, Type> typeEnv9 = new MyDictionary<>();
+        ex9.typeCheck(typeEnv9);
         MyIRepository repository9 = new MyFileRepository("log9.txt");
         PrgState prgState9 = new PrgState(ex9);
         repository9.addProgram(prgState9);
@@ -294,10 +311,20 @@ public class Interpreter {
                         )
                 )
         );
-        MyIRepository repository10 = new MyFileRepository("log10test.txt");
+        MyIDictionary<String, Type> typeEnv10 = new MyDictionary<>();
+        ex10.typeCheck(typeEnv10);
         PrgState prgState10 = new PrgState(ex10);
+        MyIRepository repository10 = new MyFileRepository("log10.txt");
         repository10.addProgram(prgState10);
         MyController controller10 = new MyController(repository10);
+
+        // Failing program example
+        IStmt failingProgram = new CompStmt(
+                new VarDeclStmt("x", new IntType()),
+                new AssignStmt("x", new ValueExp(new BoolValue(true)))
+        );
+        MyIDictionary<String, Type> typeEnvFailing = new MyDictionary<>();
+        failingProgram.typeCheck(typeEnvFailing);
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class MyController {
     private final MyIRepository repository;
     private ExecutorService executor;
+    private boolean displayFlag = false;
 
     public MyController(MyIRepository repository) {
         this.repository = repository;
@@ -71,13 +72,16 @@ public class MyController {
 
         prgStates.addAll(newPrgStates);
 
-        prgStates.forEach(prg -> {
-            try {
-                repository.logPrgStateExec(prg);
-            } catch (IOException e) {
-                throw new RuntimeException("Error logging program state", e);
-            }
-        });
+        // TODO not writing
+        if (displayFlag) {
+            prgStates.forEach(prg -> {
+                try {
+                    repository.logPrgStateExec(prg);
+                } catch (IOException e) {
+                    throw new RuntimeException("Error logging program state", e);
+                }
+            });
+        }
 
         repository.setPrgList(prgStates);
     }
@@ -113,6 +117,10 @@ public class MyController {
     }
 
     public void setDisplayFlag() {
-        boolean displayFlag = true;
+        displayFlag = true;
+    }
+
+    public void runTypeChecker() throws Exception {
+        repository.runTypeChecker();
     }
 }

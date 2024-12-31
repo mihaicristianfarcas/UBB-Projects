@@ -6,6 +6,7 @@ import Model.Exceptions.MyInvalidTypeException;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.StringType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.StringValue;
@@ -56,5 +57,15 @@ public class CloseRFileStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return null;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type expType = exp.typeCheck(typeEnv);
+        if (!(expType instanceof StringType)) {
+            throw new MyInvalidTypeException("closeRFile error: Expression does not evaluate to StringType");
+        }
+
+        return typeEnv;
     }
 }

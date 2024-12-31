@@ -1,6 +1,10 @@
 package Repository;
 
 import Model.PrgState;
+import Model.Types.Type;
+import Model.Utils.MyDictionary;
+import Model.Utils.MyIDictionary;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +30,16 @@ public class MyRepository implements MyIRepository {
         repository = newRepository;
     }
 
-    // TODO check this method
     @Override
     public void logPrgStateExec(PrgState prgState) {
         System.out.println(prgState.toString());
+    }
+
+    @Override
+    public void runTypeChecker() {
+        for (PrgState prg : repository) {
+            MyIDictionary<String, Type> typeEnv = new MyDictionary<>();
+            prg.getOriginalProgram().typeCheck(typeEnv);
+        }
     }
 }

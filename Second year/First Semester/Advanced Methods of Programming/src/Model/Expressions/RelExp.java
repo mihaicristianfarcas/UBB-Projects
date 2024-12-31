@@ -2,7 +2,9 @@ package Model.Expressions;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.MyInvalidTypeException;
+import Model.Types.BoolType;
 import Model.Types.IntType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.BoolValue;
@@ -49,6 +51,20 @@ public class RelExp implements Exp {
     @Override
     public Exp deepCopy() {
         return null;
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type t1, t2;
+        t1 = e1.typeCheck(typeEnv);
+        t2 = e2.typeCheck(typeEnv);
+        if (t1.equals(new IntType())) {
+            if (t2.equals(new IntType())) {
+                return new BoolType();
+            } else
+                throw new MyInvalidTypeException("RelExp: second operand is not an integer");
+        } else
+            throw new MyInvalidTypeException("RelExp: first operand is not an integer");
     }
 
     @Override

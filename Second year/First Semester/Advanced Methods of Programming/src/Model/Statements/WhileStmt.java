@@ -3,6 +3,7 @@ import Model.Exceptions.MyInvalidTypeException;
 import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.BoolType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.Value;
@@ -43,5 +44,17 @@ public class WhileStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new WhileStmt( exp.deepCopy(), stmt.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type expType = exp.typeCheck(typeEnv);
+        if (expType.equals(new BoolType())) {
+            stmt.typeCheck(typeEnv.deepCopy());
+            return typeEnv;
+        }
+        else {
+            throw new MyInvalidTypeException("While: condition expression is not a boolean");
+        }
     }
 }

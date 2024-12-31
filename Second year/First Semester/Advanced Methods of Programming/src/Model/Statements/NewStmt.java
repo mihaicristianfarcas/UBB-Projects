@@ -20,7 +20,6 @@ public class NewStmt implements IStmt {
         this.exp = exp;
     }
 
-    // TODO check this method
     @Override
     public PrgState execute(PrgState state) throws MyInvalidTypeException, UndefinedVariableException {
         MyIDictionary<String, Value> symTbl = state.getSymTable();
@@ -30,7 +29,7 @@ public class NewStmt implements IStmt {
             if(symTbl.lookup(varName).getType() instanceof RefType) {
                 Value val = exp.eval(symTbl, heap);
                 Type valType = val.getType();
-                if(((RefType)symTbl.lookup(varName).getType()).getInner().equals(valType)) {
+                if(((RefType) symTbl.lookup(varName).getType()).getInner().equals(valType)) {
                     int address = heap.allocate(val);
                     symTbl.update(varName, new RefValue(address, valType));
                 }
@@ -52,5 +51,15 @@ public class NewStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new NewStmt(varName, exp);
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type varType = typeEnv.lookup(varName);
+        Type expType = exp.typeCheck(typeEnv);
+        if(varType.equals(new RefType(expType)))
+            return typeEnv;
+        else
+            throw new MyInvalidTypeException("New: Declared type of variable '" + varName + "' and type of the assigned expression do not match");
     }
 }

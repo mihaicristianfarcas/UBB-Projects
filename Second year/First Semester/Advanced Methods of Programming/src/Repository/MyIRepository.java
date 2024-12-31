@@ -10,4 +10,5 @@ public interface MyIRepository {
     void addProgram(PrgState program);
     void setPrgList(List<PrgState> newRepository);
     void logPrgStateExec(PrgState prgState) throws IOException;
+    void runTypeChecker() throws Exception;
 }

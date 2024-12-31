@@ -3,6 +3,7 @@ package Model.Expressions;
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.MyInvalidTypeException;
 import Model.Types.IntType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.IntValue;
@@ -46,6 +47,20 @@ public class ArithExp implements Exp {
     @Override
     public Exp deepCopy() {
         return new ArithExp(op, e1.deepCopy(), e2.deepCopy());
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type t1, t2;
+        t1 = e1.typeCheck(typeEnv);
+        t2 = e2.typeCheck(typeEnv);
+        if (t1.equals(new IntType())) {
+            if (t2.equals(new IntType())) {
+                return new IntType();
+            } else
+                throw new MyInvalidTypeException("ArithExp: second operand is not an integer");
+        } else
+            throw new MyInvalidTypeException("ArithExp: first operand is not an integer");
     }
 
     @Override

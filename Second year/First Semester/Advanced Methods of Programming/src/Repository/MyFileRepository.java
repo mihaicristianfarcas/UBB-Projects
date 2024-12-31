@@ -1,6 +1,9 @@
 package Repository;
 
 import Model.PrgState;
+import Model.Types.Type;
+import Model.Utils.MyDictionary;
+import Model.Utils.MyIDictionary;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -38,5 +41,12 @@ public class MyFileRepository implements MyIRepository {
         PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
         logFile.write(prgState.toString());
         logFile.close();
+    }
+
+    // TODO type checker does not work here?
+    @Override
+    public void runTypeChecker() throws Exception {
+        MyIDictionary<String, Type> typeEnv = new MyDictionary<>();
+        repository.getLast().getOriginalProgram().typeCheck(typeEnv);
     }
 }

@@ -1,5 +1,7 @@
 package Model.Expressions;
 
+import Model.Exceptions.MyInvalidTypeException;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.Value;
@@ -19,6 +21,11 @@ public class ValueExp implements Exp {
     @Override
     public Exp deepCopy() {
         return new ValueExp(e.deepCopy());
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        return e.getType();
     }
 
     @Override

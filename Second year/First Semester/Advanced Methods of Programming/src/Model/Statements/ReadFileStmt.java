@@ -7,6 +7,7 @@ import Model.Expressions.Exp;
 import Model.PrgState;
 import Model.Types.IntType;
 import Model.Types.StringType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.IntValue;
@@ -65,6 +66,24 @@ public class ReadFileStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return null;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type expType = exp.typeCheck(typeEnv);
+        if (!(expType instanceof StringType)) {
+            throw new MyInvalidTypeException("readFile error: Expression does not evaluate to StringType");
+        }
+
+        if (!typeEnv.isDefined(id)) {
+            throw new MyInvalidTypeException("readFile error: Variable " + id + " is not defined in SymTable");
+        }
+
+        if (!(typeEnv.lookup(id) instanceof IntType)) {
+            throw new MyInvalidTypeException("readFile error: Variable " + id + " is not defined as int in SymTable");
+        }
+
+        return typeEnv;
     }
 
     @Override

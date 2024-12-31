@@ -4,6 +4,8 @@ import Model.Exceptions.InvalidKeyException;
 import Model.Exceptions.MyInvalidTypeException;
 import Model.Expressions.Exp;
 import Model.PrgState;
+import Model.Types.RefType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.RefValue;
@@ -58,5 +60,16 @@ public class WriteHeapStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new WriteHeapStmt(varName, exp.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type varType = typeEnv.lookup(varName);
+        Type expType = exp.typeCheck(typeEnv);
+        if (varType.equals(new RefType(expType))) {
+            return typeEnv;
+        } else {
+            throw new MyInvalidTypeException("WH: type of the variable and the type of the expression do not match");
+        }
     }
 }

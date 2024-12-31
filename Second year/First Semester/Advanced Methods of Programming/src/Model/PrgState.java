@@ -24,7 +24,7 @@ public class PrgState {
         this.fileTable = new MyDictionary<>();
         this.out = new MyList<>();
         this.heap = new MyHeap<>();
-        originalProgram = prog.deepCopy();
+        this.originalProgram = prog.deepCopy();
         this.exeStack.push(prog);
         this.currentID = getNewID();
     }

@@ -1,6 +1,8 @@
 package Model.Expressions;
 
+import Model.Exceptions.MyInvalidTypeException;
 import Model.Exceptions.UndefinedVariableException;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.Value;
@@ -23,6 +25,11 @@ public class VarExp implements Exp {
     @Override
     public Exp deepCopy() {
         return new VarExp(id);
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        return typeEnv.lookup(id);
     }
 
     @Override

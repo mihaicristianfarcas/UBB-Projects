@@ -47,5 +47,15 @@ public class AssignStmt implements IStmt {
     public IStmt deepCopy() {
         return new AssignStmt(id, exp.deepCopy());
     }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type varType = typeEnv.lookup(id);
+        Type expType = exp.typeCheck(typeEnv);
+        if (varType.equals(expType))
+            return typeEnv;
+        else
+            throw new MyInvalidTypeException("Assign: Declared type of variable '" + id + "' and type of the assigned expression do not match");
+    }
 }
 

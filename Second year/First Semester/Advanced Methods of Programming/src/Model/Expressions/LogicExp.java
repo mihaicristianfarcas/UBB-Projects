@@ -2,6 +2,7 @@ package Model.Expressions;
 
 import Model.Exceptions.MyInvalidTypeException;
 import Model.Types.BoolType;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Values.BoolValue;
@@ -40,6 +41,20 @@ public class LogicExp implements Exp {
     @Override
     public Exp deepCopy() {
         return new LogicExp(e1.deepCopy(), e2.deepCopy(), op);
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        Type t1, t2;
+        t1 = e1.typeCheck(typeEnv);
+        t2 = e2.typeCheck(typeEnv);
+        if (t1.equals(new BoolType())) {
+            if (t2.equals(new BoolType())) {
+                return new BoolType();
+            } else
+                throw new MyInvalidTypeException("LogicExp: second operand is not a boolean");
+        } else
+            throw new MyInvalidTypeException("LogicExp: first operand is not a boolean");
     }
 
     @Override

@@ -1,7 +1,9 @@
 package Model.Statements;
 
+import Model.Exceptions.MyInvalidTypeException;
 import Model.Expressions.Exp;
 import Model.PrgState;
+import Model.Types.Type;
 import Model.Utils.MyIDictionary;
 import Model.Utils.MyIHeap;
 import Model.Utils.MyIList;
@@ -32,5 +34,11 @@ public class PrintStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new PrintStmt(exp.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyInvalidTypeException {
+        exp.typeCheck(typeEnv);
+        return typeEnv;
     }
 }
