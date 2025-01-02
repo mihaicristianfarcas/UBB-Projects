@@ -1,6 +1,5 @@
 ; L3 - Using MAP functions
-; 3. Define a function to test the membership of a node in an n-tree represented as
-; (root list_nodes_subtree_1 list_nodes_subtree_2)
+; 3. Define a function to test the membership of a node in an n-tree represented as (root list_nodes_subtree_1 list_nodes_subtree_2)
 ; e. g. (a (b (c)) (d) (e (f))), 'b' -> True
 ; is-node-member(node, (root, L1, L2, ..., Ln)) = NIL, n = 0
 ;                                               = True, root = node
