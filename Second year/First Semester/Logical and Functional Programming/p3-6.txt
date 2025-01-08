@@ -13,7 +13,7 @@ insertElement(E, [H|T], [H|R]):-
     insertElement(E, T, R).
 
 % arrangements(l1, l2, ..., ln, k) = l1, k = 1
-% 								   = arrangements(l2, l3, ..., ln), k > 1, n > 0
+% 								   = arrangements(l2, l3, ..., ln), k >= 1, n > 0
 % 								   = insertElement(l1, arrangements(l2, l3, ..., ln, k - 1)), k > 1, n > 0
 % arrangements(L - list, K - integer, R - list)
 % flow model (i, i, o)
