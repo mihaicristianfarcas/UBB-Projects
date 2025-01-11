@@ -4,7 +4,7 @@
 
 
 % insertElement(e, l1, l2, ..., ln) = e U l1, l2, ..., ln, n >= 0
-% 									= l1 U insertElement(l2, l3, ..., ln), n > 0
+% 									= l1 U insertElement(e, l2, l3, ..., ln), n > 0
 % insertElement(E - element, L - list, R - list)
 % flow model (i, i, o)
 
