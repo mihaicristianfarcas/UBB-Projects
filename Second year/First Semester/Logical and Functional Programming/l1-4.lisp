@@ -64,7 +64,7 @@
 
 ; d. Write a function to return the maximum value of the numerical atoms from a list, at superficial level.
 ; max-numerical(l1, l2, ..., ln) = [], if l does not contain numbers
-;                                = max(remove-if-not numberp [l1, l2, ..., ln]), otherwise # idk if this is correct as mathematical model
+;                                = max(remove-if-not numberp [l1, l2, ..., ln]), otherwise
 
 (defun max-numerical (lista)
   "Finds the maximum numerical atom in a superficial list."

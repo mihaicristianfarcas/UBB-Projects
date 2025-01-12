@@ -8,9 +8,7 @@
 (defun is-node-member (node tree)
   "Check if NODE is a member of the n-tree TREE using a MAP function."
   (or (equal node (first tree))
-      (some #'identity                                                          ; Check if any subtree contains the node
-        (mapcar #'(lambda (subtree) (is-node-member node subtree)) (rest tree)) ; Map over the subtrees
-      )
+      (some #'identity (mapcar #'(lambda (subtree) (is-node-member node subtree)) (rest tree)))
   )
 )
 
