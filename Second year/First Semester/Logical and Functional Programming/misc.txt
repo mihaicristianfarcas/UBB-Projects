@@ -1,0 +1,27 @@
+# ex2019-9 2.
+
+rev([], []).
+rev([H|T], RevList) :-
+    is_list(H),
+    !,
+    rev(H, RevH),
+    rev(T, RevT),
+    append(RevT, [RevH], RevList).
+rev([H|T], RevList) :-
+    rev(T, RevT),
+    append(RevT, [H], RevList).
+
+# ex2019-9 3.
+# subsets of N <=> combinations of N
+
+% comb(l1, l2, ..., ln, N) = l1, N = 1
+%                          = comb(l2, ..., ln, N), N >= 1
+%                          = l1 U comb(l2, ..., ln, N - 1), N > 1
+comb([H|_], 1, [H]).
+comb([_|T], N, R):-
+    N >= 1,
+    comb(T, N, R).
+comb([H|T], N, [H|R]):-
+    N > 1,
+    N1 is N - 1,
+    comb(T, N1, R).
