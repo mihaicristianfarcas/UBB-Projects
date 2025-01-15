@@ -24,7 +24,7 @@
         ((and (numberp l) (= (mod l k) 0)) nil)
         ((atom l) (list l))
         (t (list (apply #'append (mapcar #'(lambda (x) (removeK x k)) l))))
-        ;        \  or use mapcon #'... /
+        ;    \  or use mapcon #'...   /
     )
 )
 

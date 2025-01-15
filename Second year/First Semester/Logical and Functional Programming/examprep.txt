@@ -1,0 +1,185 @@
+# ex2019-9 2.
+
+rev([], []).
+rev([H|T], RevList) :-
+    is_list(H),
+    !,
+    rev(H, RevH),
+    rev(T, RevT),
+    append(RevT, [RevH], RevList).
+rev([H|T], RevList) :-
+    rev(T, RevT),
+    append(RevT, [H], RevList).
+
+
+# ex2019-9 3.
+% subsets of N <=> combinations of N
+
+% comb(l1, l2, ..., ln, N) = l1, N = 1
+%                          = comb(l2, ..., ln, N), N >= 1
+%                          = l1 U comb(l2, ..., ln, N - 1), N > 1
+comb([H|_], 1, [H]).
+comb([_|T], N, R):-
+    N >= 1,
+    comb(T, N, R).
+comb([H|T], N, [H|R]):-
+    N > 1,
+    N1 is N - 1,
+    comb(T, N1, R).
+
+
+# ex-2019-9 4.
+; Remove all occ. of element e from a nonlinear list.
+; removeE(l, e) = l, if l is an atom and l != e
+;               = nil, l is an atom and l = e
+;               = removeE(l1, e) U ... U removeE(ln, e), l is a list
+
+(defun removeEMAP(l e)
+    (cond
+        ((and (atom l) (eq l e)) nil)
+        ((atom l) l)
+        (t (mapcar #'(lambda(x) (removeEMAP x e)) l))
+    )
+)
+
+; removeE(l1, l2, ..., ln, e) = [], n = 0
+;                             = l1 U removeE(l2, ..., ln), n > 0 and l1 is an atom and l1 != e
+;                             = removeE(l2, ..., ln), n > 0 and l1 is an atom and l1 = e
+;                             = removeE(l1) U removeE(l2, l3, ..., ln), n > 0 and l1 is a list
+(defun removeE(l e)
+    (cond
+        ((null l) nil)
+        ((and (atom (car l)) (eq (car l) e)) (removeE (cdr l) e))
+        ((atom (car l)) (cons (car l) (removeE (cdr l) e)))
+        (t (cons (removeE (car l) e) (removeE (cdr l) e)))
+    )
+)
+
+(print (removeE '(1 (2 A (3 A)) (A)) 'A))
+(print (removeEMAP '(1 (2 A (3 A)) (A)) 'A))
+
+
+# ex2020-A6 II.
+% insertElement(l1, l2, ..., ln, e) = e U l1 U ... U ln, n >= 0
+%                                   = l1 U insertElement(l2, l3, ..., ln, e), n >= 0
+% insertElement(L - list, E - integer, R - list) (i, i, o)
+
+insertElement(L, E, [E|L]).
+insertElement([H|T], E, [H|R]):-
+    insertElement(T, E, R).
+
+% permutations(l1, l2, ..., ln) = [], n = 0
+%                               = insertElement(permutations(l2, l3, ..., ln), l1), oth.
+% permutations(L - list, R - list) (i, o)
+
+permutations([], []).
+permutations([H|T], R):-
+    permutations(T, T1),
+    insertElement(T1, H, R).
+
+checkSol([H1,H2]):- D is abs(H1 - H2), D =< 3.
+checkSol([H1,H2|T]):- D is abs(H1 - H2), D =< 3, checkSol([H2|T]).
+oneSol(L, R):- permutations(L, R), checkSol(R).
+allSol(L, R):- findall(S, oneSol(L, S), R).
+
+
+# ex2020-A1 II.
+% arrangements(l1, l2, ..., ln, k) = l1, k = 1
+%                                 = arrangements(l2, l3, ..., ln, k), k > 1
+%                                 = insertElement(arrangements(l2, l3, ..., ln, k - 1), l1), k > 1
+
+arrangements([H|_], 1, [H]).
+arrangements([_|T], K, R):-
+    K >= 1,
+    arrangements(T, K, R).
+arrangements([H|T], K, R):-
+    K > 1,
+    K1 is K - 1,
+    arrangements(T, K1, T1),
+    insertElement(T1, H, R).
+
+product([], 1).
+product([H|T], P):-
+    product(T, P1),
+    P is P1 * H.
+
+checkSol(L, P):- product(L, P1), P1 =:= P.
+oneSol(L, K, P, R):- arrangements(L, K, R), checkSol(R, P).
+allSol(L, K, P, R):- findall(S, oneSol(L, K, P, S), R).
+
+
+# ex2020-A1 III.
+; replace-oddlvl(l, lvl, e) = e, if lvl % 2 = 1 and l is an atom
+;                           = l, if lvl % 2 = 0 and l is an atom
+;                           = replace-oddlvl(l1, lvl + 1, e) U ... U replace-oddlvl(ln, lvl + 1, e), l is a list
+
+(defun replace-oddlvl(l lvl e)
+    (cond
+        ((and (= (mod lvl 2) 1) (atom l)) e)
+        ((atom l) l)
+        (t (mapcar #'(lambda(x) (replace-oddlvl x (+ lvl 1) e)) l))
+    )
+)
+
+(print (replace-oddlvl '(a (b (g)) (c (d (e))) (f)) -1 'x))
+
+
+# ex2020-A5 II.
+% subsets(l1, l2, ..., ln) = [], n = 0
+%                          = subsets(l2, l3, ..., ln), n > 0
+%                          = l1 U subsets(l2, l3, ..., ln), n > 0
+% subsets(L - list, R - list) (i, o)
+
+subsets([],[]).
+subsets([_|T], R):-
+    subsets(T, R).
+subsets([H|T], [H|R]):-
+    subsets(T, R).
+
+% checkSol(l1, l2, ..., ln, S) = true, n <= 0 and S % 3 = 0
+%                              = checkSol(l2, ..., ln, S + l1), n > 0
+%                              = false, otherwise
+% checkSol(L - list, N - integer, S - integer) (i, i, i)
+checkSol([], N, S):- N =< 0, S mod 3 =:= 0.
+checkSol([H|T], N, S):-
+    S1 is S + H,
+    N1 is N - 1,
+    checkSol(T, N1, S1).
+
+oneSol(L, N, R):- subsets(L, R), checkSol(R, N, 0).
+allSol(L, N, R):- findall(S, oneSol(L, N, S), R).
+
+
+# ex2020-A5 I.1
+
+(defun f(l)
+    (cond
+        ((null l) 0)
+        (t (lambda(x) 
+            (cond
+                ((> x 2) (+ (car x) (f (cdr x))))
+                (t x)
+            )
+           ) (f (car l))
+        )
+    )
+)
+
+
+# ex2020-A5 I.2
+f([], 0).
+f([H|T], S):-
+    f(T, S1),
+    (H < S1 -> !, S is H + S1; S is S1 + 2).
+
+% ex2020-A5 I.4
+p(1).
+p(2).
+q(1).
+q(2).
+r(1).
+r(2).
+
+% write(X, Y, Z) is a syntax error?
+s:- !, p(X), q(Y), r(Z), write(X), write(Y), write(Z), nl.
+% oth. returns all variants
