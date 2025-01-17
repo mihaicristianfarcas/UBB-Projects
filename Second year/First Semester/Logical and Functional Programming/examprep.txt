@@ -183,3 +183,33 @@ r(2).
 % write(X, Y, Z) is a syntax error?
 s:- !, p(X), q(Y), r(Z), write(X), write(Y), write(Z), nl.
 % oth. returns all variants
+
+
+% ex2024-B1 II.
+
+chairs(0, []).
+chairs(N, ['R'|R]):-
+    N > 0,
+    N1 is N - 1,
+    chairs(N1, R).
+chairs(N, ['Y'|R]):-
+    N > 0,
+    N1 is N - 1,
+    chairs(N1, R).
+
+nrOcc([], _, 0).
+nrOcc([E|T], E, R):- 
+    nrOcc(T, E, R1),
+    R is R1 + 1.
+nrOcc([H|T], E, R):-
+    H \= E,
+    nrOcc(T, E, R).
+
+checkSol(L):- 
+    nrOcc(L, 'Y', C), 
+    C =< 3.
+oneSol(N, R):- 
+    chairs(N, R), 
+    checkSol(R).
+allSol(N, R):- 
+    findall(S, oneSol(N, S), R).

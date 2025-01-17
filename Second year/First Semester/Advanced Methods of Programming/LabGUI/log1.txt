@@ -1,0 +1,105 @@
+-- ID:
+1
+-- ExeStack:
+[print(v), int v]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[print(v)]
+-- SymTable:
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[]
+-- SymTable:
+v -> 0
+-- Heap:
+-- Out:
+[0]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[print(v), int v]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[print(v)]
+-- SymTable:
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[]
+-- SymTable:
+v -> 0
+-- Heap:
+-- Out:
+[0]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[print(v), int v]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[print(v)]
+-- SymTable:
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[]
+-- SymTable:
+v -> 0
+-- Heap:
+-- Out:
+[0]
+-- FileTable:
+
+

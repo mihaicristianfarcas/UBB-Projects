@@ -1,0 +1,151 @@
+-- ID:
+8
+-- ExeStack:
+[(new(v, 20);(Ref(Ref(int)) a;(new(a, v);(new(v, 30);print(readHeap(readHeap(a))))))), Ref(int) v]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(new(v, 20);(Ref(Ref(int)) a;(new(a, v);(new(v, 30);print(readHeap(readHeap(a)))))))]
+-- SymTable:
+v -> (0, int)
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(Ref(Ref(int)) a;(new(a, v);(new(v, 30);print(readHeap(readHeap(a)))))), new(v, 20)]
+-- SymTable:
+v -> (0, int)
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(Ref(Ref(int)) a;(new(a, v);(new(v, 30);print(readHeap(readHeap(a))))))]
+-- SymTable:
+v -> (2, int)
+-- Heap:
+2 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(new(a, v);(new(v, 30);print(readHeap(readHeap(a))))), Ref(Ref(int)) a]
+-- SymTable:
+v -> (2, int)
+-- Heap:
+2 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(new(a, v);(new(v, 30);print(readHeap(readHeap(a)))))]
+-- SymTable:
+a -> (0, Ref(int))
+v -> (2, int)
+-- Heap:
+2 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(new(v, 30);print(readHeap(readHeap(a)))), new(a, v)]
+-- SymTable:
+a -> (0, Ref(int))
+v -> (2, int)
+-- Heap:
+2 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[(new(v, 30);print(readHeap(readHeap(a))))]
+-- SymTable:
+a -> (3, Ref(int))
+v -> (2, int)
+-- Heap:
+2 -> 20
+3 -> (2, int)
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[print(readHeap(readHeap(a))), new(v, 30)]
+-- SymTable:
+a -> (3, Ref(int))
+v -> (2, int)
+-- Heap:
+2 -> 20
+3 -> (2, int)
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[print(readHeap(readHeap(a)))]
+-- SymTable:
+a -> (3, Ref(int))
+v -> (4, int)
+-- Heap:
+2 -> 20
+3 -> (2, int)
+4 -> 30
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+8
+-- ExeStack:
+[]
+-- SymTable:
+a -> (3, Ref(int))
+v -> (4, int)
+-- Heap:
+2 -> 20
+3 -> (2, int)
+4 -> 30
+-- Out:
+[20]
+-- FileTable:
+
+

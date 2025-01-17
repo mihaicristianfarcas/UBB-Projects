@@ -1,0 +1,46 @@
+-- ID:
+1
+-- ExeStack:
+[x=true, int x]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[x=true]
+-- SymTable:
+x -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[x=true, int x]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+1
+-- ExeStack:
+[x=true]
+-- SymTable:
+x -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
