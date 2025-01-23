@@ -19,7 +19,7 @@ nrOcc([H|T], N, C):-
     C is C1 + 1.
 
 nrOcc([H|T], N, C):-
-    H =\= N, % ?!?!?!?!?!??!?!?! fara asta nu merge, in schimb merge fara cand e apelat singur
+    H =\= N,
     nrOcc(T, N, C).
 
 

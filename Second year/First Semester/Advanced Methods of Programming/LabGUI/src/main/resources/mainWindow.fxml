@@ -23,7 +23,7 @@
 
     <HBox spacing="10" VBox.vgrow="ALWAYS">
         <VBox spacing="10" HBox.hgrow="ALWAYS">
-            <Label text="HeapTable" />
+            <Label text="Heap Table:" />
             <TableView fx:id="heapTableView" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="heapAddressColumn" text="Address" />
@@ -31,21 +31,21 @@
                 </columns>
             </TableView>
 
-            <Label text="Output">
+            <Label text="Output:">
             <font>
                <Font name="System Italic" size="12.0" />
             </font></Label>
             <ListView fx:id="outputListView" VBox.vgrow="ALWAYS" />
 
-            <Label text="Files Table:" />
+            <Label text="File Table:" />
             <ListView fx:id="fileTableListView" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <VBox spacing="10" HBox.hgrow="ALWAYS">
-            <Label text="PrgState Identifiers" />
+            <Label text="Program State Identifiers:" />
             <ListView fx:id="prgStateIdentifiersListView" VBox.vgrow="ALWAYS" />
 
-            <Label text="Symbol Table">
+            <Label text="Symbol Table:">
             <font>
                <Font name="System Bold Italic" size="12.0" />
             </font></Label>
