@@ -21,7 +21,6 @@ import java.io.BufferedReader;
 import Model.Values.StringValue;
 import javafx.stage.Stage;
 
-
 public class MainWindowController {
     private MyController controller;
     private PrgState selectedProgram;
@@ -108,7 +107,8 @@ public class MainWindowController {
 
     private void populateHeapTable() {
         MyIHeap<Value> heap = controller.getPrgStates().get(0).getHeap();
-        ObservableList<Map.Entry<Integer, Value>> heapEntries = FXCollections.observableArrayList(heap.getContent().entrySet());
+        ObservableList<Map.Entry<Integer, Value>> heapEntries = FXCollections
+                .observableArrayList(heap.getContent().entrySet());
         heapTableView.setItems(heapEntries);
     }
 
@@ -178,10 +178,10 @@ public class MainWindowController {
             MyIDictionary<String, Value> symTable = selectedProgram.getSymTable();
             List<Map.Entry<String, Value>> entries = new ArrayList<>(symTable.getContent().entrySet());
             symTableEntries.addAll(entries);
-            
+
             symTableView.getItems().clear();
             symTableView.setItems(symTableEntries);
-            
+
             symTableView.refresh();
         }
     }
@@ -210,8 +210,8 @@ public class MainWindowController {
                 System.exit(0);
             }
 
-        controller.oneStepForAllPrg(prgList);
-        populateAll();
+            controller.oneStepForAllPrg(prgList);
+            populateAll();
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
