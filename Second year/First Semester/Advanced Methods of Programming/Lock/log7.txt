@@ -1,0 +1,113 @@
+-- ID:
+7
+-- ExeStack:
+[(new(v, 20);(print(readHeap(v));(writeHeap(v, 30);print(readHeap(v)+5)))), Ref(int) v]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[(new(v, 20);(print(readHeap(v));(writeHeap(v, 30);print(readHeap(v)+5))))]
+-- SymTable:
+v -> (0, int)
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[(print(readHeap(v));(writeHeap(v, 30);print(readHeap(v)+5))), new(v, 20)]
+-- SymTable:
+v -> (0, int)
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[(print(readHeap(v));(writeHeap(v, 30);print(readHeap(v)+5)))]
+-- SymTable:
+v -> (5, int)
+-- Heap:
+5 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[(writeHeap(v, 30);print(readHeap(v)+5)), print(readHeap(v))]
+-- SymTable:
+v -> (5, int)
+-- Heap:
+5 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[(writeHeap(v, 30);print(readHeap(v)+5))]
+-- SymTable:
+v -> (5, int)
+-- Heap:
+5 -> 20
+-- Out:
+[20]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[print(readHeap(v)+5), writeHeap(v, 30)]
+-- SymTable:
+v -> (5, int)
+-- Heap:
+5 -> 20
+-- Out:
+[20]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[print(readHeap(v)+5)]
+-- SymTable:
+v -> (5, int)
+-- Heap:
+5 -> 30
+-- Out:
+[20]
+-- FileTable:
+
+
+-- ID:
+7
+-- ExeStack:
+[]
+-- SymTable:
+v -> (5, int)
+-- Heap:
+5 -> 30
+-- Out:
+[20, 35]
+-- FileTable:
+
+

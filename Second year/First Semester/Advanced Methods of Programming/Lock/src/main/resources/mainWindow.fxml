@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Number of Program States:" />
+        <TextField fx:id="numberOfPrgStatesTextField" editable="false" />
+    </HBox>
+
+    <HBox spacing="10" VBox.vgrow="ALWAYS">
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <Label text="Heap Table:" />
+            <TableView fx:id="heapTableView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="heapAddressColumn" text="Address" />
+                    <TableColumn fx:id="heapValueColumn" text="Value" />
+                </columns>
+            </TableView>
+
+            <Label text="Output:">
+            <font>
+               <Font name="System Italic" size="12.0" />
+            </font></Label>
+            <ListView fx:id="outputListView" VBox.vgrow="ALWAYS" />
+
+            <Label text="File Table:" />
+            <ListView fx:id="fileTableListView" VBox.vgrow="ALWAYS" />
+         <Label text="Lock Table:" VBox.vgrow="ALWAYS" />
+         <TableView fx:id="lockTableView" VBox.vgrow="ALWAYS">
+           <columns>
+             <TableColumn fx:id="lockTableViewIndexColumn" prefWidth="75.0" text="Index" />
+             <TableColumn fx:id="lockTableViewValueColumn" prefWidth="75.0" text="Value" />
+           </columns>
+         </TableView>
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <Label text="Program State Identifiers:" />
+            <ListView fx:id="prgStateIdentifiersListView" VBox.vgrow="ALWAYS" />
+
+            <Label text="Symbol Table:">
+            <font>
+               <Font name="System Bold Italic" size="12.0" />
+            </font></Label>
+            <TableView fx:id="symTableView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="symTableVarNameColumn" prefWidth="125.59997403621674" text="Variable Name" />
+                    <TableColumn fx:id="symTableValueColumn" prefWidth="122.40006256103516" text="Value" />
+                </columns>
+            </TableView>
+
+            <Label text="Execution Stack:" />
+            <ListView fx:id="exeStackListView" VBox.vgrow="ALWAYS" />
+      
+            <Button fx:id="runOneStepButton" maxWidth="Infinity" onAction="#runOneStep" text="Run one step" />
+        </VBox>
+    </HBox>
+</VBox>
