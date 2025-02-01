@@ -1,0 +1,126 @@
+-- ID:
+3
+-- ExeStack:
+[(int v;(a=true;(if(a) then(v=2) else(v=3);print(v)))), bool a]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[(int v;(a=true;(if(a) then(v=2) else(v=3);print(v))))]
+-- SymTable:
+a -> false
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[(a=true;(if(a) then(v=2) else(v=3);print(v))), int v]
+-- SymTable:
+a -> false
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[(a=true;(if(a) then(v=2) else(v=3);print(v)))]
+-- SymTable:
+a -> false
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[(if(a) then(v=2) else(v=3);print(v)), a=true]
+-- SymTable:
+a -> false
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[(if(a) then(v=2) else(v=3);print(v))]
+-- SymTable:
+a -> true
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[print(v), if(a) then(v=2) else(v=3)]
+-- SymTable:
+a -> true
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[print(v), v=2]
+-- SymTable:
+a -> true
+v -> 0
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[print(v)]
+-- SymTable:
+a -> true
+v -> 2
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+3
+-- ExeStack:
+[]
+-- SymTable:
+a -> true
+v -> 2
+-- Heap:
+-- Out:
+[2]
+-- FileTable:
+
+
