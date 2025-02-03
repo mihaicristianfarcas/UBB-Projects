@@ -1,1100 +1,321 @@
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [(v=4;(while(v > 0) {(print(v);v=v-1)};print(v))), int v]
--- SymTable:
--- Heap:
--- Out:
+-- SymTable --
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [(v=4;(while(v > 0) {(print(v);v=v-1)};print(v)))]
--- SymTable:
+-- SymTable --
 v -> 0
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [(while(v > 0) {(print(v);v=v-1)};print(v)), v=4]
--- SymTable:
+-- SymTable --
 v -> 0
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [(while(v > 0) {(print(v);v=v-1)};print(v))]
--- SymTable:
+-- SymTable --
 v -> 4
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
+-- SymTable --
 v -> 4
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
+-- SymTable --
 v -> 4
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
+-- SymTable --
 v -> 4
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 []
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
+-- SymTable --
 v -> 4
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
+-- SymTable --
 v -> 3
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
+-- SymTable --
 v -> 3
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
+-- SymTable --
 v -> 3
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
+-- SymTable --
 v -> 3
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
+-- SymTable --
 v -> 2
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
+-- SymTable --
 v -> 2
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
+-- SymTable --
 v -> 2
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
+-- SymTable --
 v -> 2
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
+-- SymTable --
 v -> 1
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
+-- SymTable --
 v -> 1
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
+-- SymTable --
 v -> 1
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
+-- SymTable --
 v -> 1
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2, 1]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
+-- SymTable --
 v -> 0
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2, 1]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 [print(v)]
--- SymTable:
+-- SymTable --
 v -> 0
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2, 1]
--- FileTable:
+-- FileTable --
+
+-- SemaphoreTable --
 
 
--- ID:
-9
--- ExeStack:
+-- ID --
+1
+-- ExeStack --
 []
--- SymTable:
+-- SymTable --
 v -> 0
--- Heap:
--- Out:
+-- Heap --
+-- Out --
 [4, 3, 2, 1, 0]
--- FileTable:
+-- FileTable --
 
-
--- ID:
-1
--- ExeStack:
-[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v))), int v]
--- SymTable:
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v)))]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(while(v > 0) {(print(v);v=v-1)};print(v)), v=4]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(while(v > 0) {(print(v);v=v-1)};print(v))]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v)]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1, 0]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v))), int v]
--- SymTable:
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v)))]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(while(v > 0) {(print(v);v=v-1)};print(v)), v=4]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(while(v > 0) {(print(v);v=v-1)};print(v))]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v)]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1, 0]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v))), int v]
--- SymTable:
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(v=4;(while(v > 0) {(print(v);v=v-1)};print(v)))]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(while(v > 0) {(print(v);v=v-1)};print(v)), v=4]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[(while(v > 0) {(print(v);v=v-1)};print(v))]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 4
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 3
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 2
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, (print(v);v=v-1)]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1, print(v)]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}, v=v-1]
--- SymTable:
-v -> 1
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v), while(v > 0) {(print(v);v=v-1)}]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[print(v)]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1]
--- FileTable:
-
-
--- ID:
-1
--- ExeStack:
-[]
--- SymTable:
-v -> 0
--- Heap:
--- Out:
-[4, 3, 2, 1, 0]
--- FileTable:
+-- SemaphoreTable --
 
 

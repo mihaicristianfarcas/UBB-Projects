@@ -36,7 +36,7 @@ public class CreateSemaphoreStmt implements IStmt {
         }
 
         if (!symTable.isDefined(var)) {
-            throw new UndefinedVariableException(var.toString());
+            throw new UndefinedVariableException(var);
         }
 
         if (!symTable.lookup(var).getType().equals(new IntType())) {
