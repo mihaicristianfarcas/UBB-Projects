@@ -1,0 +1,149 @@
+-- ID:
+5
+-- ExeStack:
+[(new(v, 20);(Ref(Ref(int)) a;(new(a, v);(print(v);print(a))))), Ref(int) v]
+-- SymTable:
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(new(v, 20);(Ref(Ref(int)) a;(new(a, v);(print(v);print(a)))))]
+-- SymTable:
+v -> (0, int)
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(Ref(Ref(int)) a;(new(a, v);(print(v);print(a)))), new(v, 20)]
+-- SymTable:
+v -> (0, int)
+-- Heap:
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(Ref(Ref(int)) a;(new(a, v);(print(v);print(a))))]
+-- SymTable:
+v -> (8, int)
+-- Heap:
+8 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(new(a, v);(print(v);print(a))), Ref(Ref(int)) a]
+-- SymTable:
+v -> (8, int)
+-- Heap:
+8 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(new(a, v);(print(v);print(a)))]
+-- SymTable:
+a -> (0, Ref(int))
+v -> (8, int)
+-- Heap:
+8 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(print(v);print(a)), new(a, v)]
+-- SymTable:
+a -> (0, Ref(int))
+v -> (8, int)
+-- Heap:
+8 -> 20
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[(print(v);print(a))]
+-- SymTable:
+a -> (9, Ref(int))
+v -> (8, int)
+-- Heap:
+8 -> 20
+9 -> (8, int)
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[print(a), print(v)]
+-- SymTable:
+a -> (9, Ref(int))
+v -> (8, int)
+-- Heap:
+8 -> 20
+9 -> (8, int)
+-- Out:
+[]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[print(a)]
+-- SymTable:
+a -> (9, Ref(int))
+v -> (8, int)
+-- Heap:
+8 -> 20
+9 -> (8, int)
+-- Out:
+[(8, int)]
+-- FileTable:
+
+
+-- ID:
+5
+-- ExeStack:
+[]
+-- SymTable:
+a -> (9, Ref(int))
+v -> (8, int)
+-- Heap:
+8 -> 20
+9 -> (8, int)
+-- Out:
+[(8, int), (9, Ref(int))]
+-- FileTable:
+
+
