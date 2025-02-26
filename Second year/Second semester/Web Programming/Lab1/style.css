@@ -10,7 +10,7 @@ body {
 header {
 	background-color: #e60000;
 	color: #fff;
-	padding: 20px;
+	padding: 10px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -212,7 +212,6 @@ hr {
     }
 
     header {
-        padding: 10px;
 		text-align: center;
     }
 }
