@@ -8,7 +8,7 @@ body {
     gap: 50px;
 }
 
-/* Version 1: Shadow-based 3D effect */
+/* V1: Shadow-based effect */
 .button-3d-v1 {
     padding: 15px 30px;
     background-color: #4CAF50;
@@ -17,23 +17,23 @@ body {
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
-    box-shadow: 0 8px 0 #2E7D32, 0 10px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 0 #2E7D32, 0 10px 15px rgba(0,0,0,0.5);
     position: relative;
     top: 0;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
 .button-3d-v1:hover {
     top: 4px;
-    box-shadow: 0 4px 0 #2E7D32, 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 0 #2E7D32, 0 5px 10px rgba(0,0,0,0.3);
 }
 
 .button-3d-v1:active {
     top: 8px;
-    box-shadow: 0 0 0 #2E7D32, 0 1px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 0 0 #2E7D32, 0 1px 5px rgba(0,0,0,0.3);
 }
 
-/* Version 2: Transform-based 3D effect */
+/* V2: Transform-based effect */
 .button-3d-v2 {
     padding: 15px 30px;
     background-color: #2196F3;
@@ -44,29 +44,14 @@ body {
     cursor: pointer;
     position: relative;
     transform-style: preserve-3d;
-    transform: perspective(800px) translateZ(0);
-    transition: transform 0.2s ease;
-}
-
-.button-3d-v2::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #0D47A1;
-    transform: translateZ(-20px);
-    border-radius: 5px;
-    z-index: -1;
+    transition: transform 0.6s;
 }
 
 .button-3d-v2:hover {
-    transform: perspective(800px) translateZ(-5px);
+    transform: perspective(800px) translateZ(-200px);
 }
 
 .button-3d-v2:active {
-    transform: perspective(800px) translateZ(-10px);
+    transform: perspective(800px) translateZ(-500px);
+    transition: 0.2s;
 }
