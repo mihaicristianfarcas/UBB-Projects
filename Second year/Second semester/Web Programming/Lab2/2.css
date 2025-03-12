@@ -33,7 +33,6 @@ body {
 
 .thumbnail-container {
     position: relative;
-    display: inline-block;
 }
 
 .thumbnail {
@@ -61,9 +60,8 @@ body {
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    left: 50%;
     transform: translateX(-50%);
-    bottom: 120px;
+    bottom: 125px;
     z-index: 100;
 }
 
@@ -72,11 +70,6 @@ body {
 }
 
 /* Hide default large image when any thumbnail is hovered */
-.thumbnail-container:hover ~ .large-image-container,
-.thumbnail-container:hover .large-image-container {
-    visibility: hidden;
-}
-
 .large-image-container:has(~ .thumbnails-row .thumbnail-container:hover) {
     visibility: hidden;
 }
