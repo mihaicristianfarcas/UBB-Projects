@@ -1,1 +1,37 @@
 <!-- 14. Write a web page which should contain on a row several thumbnail images and above that row should contain a larger image. If the mouse is over a thumbnail image, the larger version of that image should appear above it. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="14.css">
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    
+    <!-- Large image display area (default) -->
+    <div class="large-image-container">
+        <img id="defaultImage" class="large-image" src="franz-barbarini-8593186.jpg" alt="Default Large Image">
+    </div>
+    
+    <!-- Thumbnails row with hidden large images -->
+    <div class="thumbnails-row">
+        <div class="thumbnail-container">
+            <img class="thumbnail" src="Edward_Theodore_Compton_Großglockner_von_der_Prager_Hütte_aus_16_9.jpg" alt="Thumbnail 1">
+            <div class="large-image-hover">
+                <img class="large-image" src="Edward_Theodore_Compton_Großglockner_von_der_Prager_Hütte_aus_16_9.jpg" alt="Large Image 1">
+            </div>
+        </div>
+        
+        <div class="thumbnail-container">
+            <img class="thumbnail" src="Friedrich_Nerly_Insel_und_Kirche_San_Giorgio_Maggiore_Venedig_c1870.jpg" alt="Thumbnail 2">
+            <div class="large-image-hover">
+                <img class="large-image" src="Friedrich_Nerly_Insel_und_Kirche_San_Giorgio_Maggiore_Venedig_c1870.jpg" alt="Large Image 2">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
