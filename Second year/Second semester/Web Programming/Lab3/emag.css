@@ -334,6 +334,11 @@ body {
     width: 100%;
   }
 
+  .inset {
+    margin-left: 0;
+    width: 100%;
+  }
+
   .slider-controls {
     left: 40%;
   }
@@ -352,11 +357,6 @@ body {
 }
 
 @media screen and (max-width: 820px) {
-  .inset {
-    margin-left: 0;
-    width: 100%;
-  }
-
   .deals-banner {
     width: 100%;
   }
