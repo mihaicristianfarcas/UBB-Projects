@@ -13,12 +13,19 @@ body {
 }
 
 .header {
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 15px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px 10px;
 }
 
 .logo img {
@@ -36,6 +43,7 @@ body {
   border-radius: 15px;
   width: 100%;
   margin: 0 12px;
+  margin-bottom: 6px;
 }
 
 .search-bar input {
@@ -52,6 +60,7 @@ body {
   align-items: center;
   gap: 20px;
   white-space: nowrap;
+  margin-bottom: 6px;
 }
 
 .user-actions a {
@@ -69,8 +78,10 @@ body {
 }
 
 .top-nav {
-  display: flex;
-  align-items: center;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
   background: linear-gradient(
     to right,
     #ff1d25 5%,
@@ -79,6 +90,13 @@ body {
     #4359c7 55%,
     #0082e6 70%
   );
+}
+
+.top-nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
   color: white;
   padding: 0 15px;
 }
@@ -86,12 +104,13 @@ body {
 .products-button {
   display: flex;
   align-items: center;
-  background-color: #e40f0f;
-  color: white;
-  padding: 10px 15px;
+  background-color: whitesmoke;
+  padding: 8px 15px;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+  gap: 5px;
 }
 
 .nav-links {
@@ -116,11 +135,11 @@ body {
 }
 
 .sidebar {
-  width: 250px;
+  position: relative;
+  width: 220px;
   background-color: white;
   box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-  top: 195px;
-  left: 0;
+  top: 87px;
 }
 
 .sidebar-item {
@@ -137,15 +156,9 @@ body {
   background-color: #f8f8f8;
 }
 
-.main-content {
-  margin-left: 250px;
-  padding: 20px;
-}
-
 .slider-controls {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .dot {
@@ -162,6 +175,7 @@ body {
 }
 
 .products-grid {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -194,6 +208,11 @@ body {
   width: 70%;
 }
 
+.inset {
+  margin-left: 230px;
+  padding: 20px;
+}
+
 .slider-navigation {
   position: relative;
   display: flex;
@@ -211,17 +230,9 @@ body {
   justify-content: space-between;
 }
 
-.inset {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  gap: 10px;
-}
-
 .smart-deals {
+  position: relative;
+  top: 10px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
