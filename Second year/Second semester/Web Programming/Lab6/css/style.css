@@ -183,6 +183,35 @@ textarea {
     border-radius: 4px;
 }
 
+.filter-section {
+    margin-bottom: 10px;
+}
+
+.filter-section h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #2c3e50;
+    display: inline-block;
+}
+
+.previous-section {
+    margin-top: 10px;
+    border-top: 1px solid #cce5ff;
+    padding-top: 10px;
+}
+
+.previous-section ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.previous-section li {
+    padding: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .filters {
