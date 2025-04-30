@@ -1,8 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const applyFiltersBtn = document.getElementById('apply_filters');
+    const applyFiltersButton = document.getElementById('apply_filters');
     const newsList = document.getElementById('news_list');
     const activeFilters = document.getElementById('active_filters');
     let currentFilters = {};
+    let isLoading = false;
+
+    function showLoading() {
+        isLoading = true;
+        newsList.innerHTML = '<div class="loading">Loading news...</div>';
+    }
+
+    function hideLoading() {
+        isLoading = false;
+    }
+
+    function showError(message) {
+        newsList.innerHTML = `<div class="error">${message}</div>`;
+    }
 
     function updateActiveFilters() {
         let filterText = 'Active filters: ';
@@ -27,12 +41,33 @@ document.addEventListener('DOMContentLoaded', function() {
         activeFilters.textContent = filterText;
     }
 
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
     function loadNews() {
+        if (isLoading) return;
+        
+        showLoading();
         const params = new URLSearchParams(currentFilters);
+        
         fetch(`api/get_news.php?${params}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
+                hideLoading();
                 newsList.innerHTML = '';
+                
+                if (data.length === 0) {
+                    newsList.innerHTML = '<div class="no-news">No news found matching your criteria.</div>';
+                    return;
+                }
+
                 data.forEach(news => {
                     const newsItem = document.createElement('div');
                     newsItem.className = 'news-item';
@@ -41,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="news-meta">
                             <span class="producer">By: ${news.producer}</span>
                             <span class="category">Category: ${news.category}</span>
-                            <span class="date">${news.created_at}</span>
+                            <span class="date">${formatDate(news.created_at)}</span>
                         </div>
                         <div class="news-content">${news.content}</div>
                         ${news.can_edit ? `
@@ -54,31 +89,46 @@ document.addEventListener('DOMContentLoaded', function() {
                     newsList.appendChild(newsItem);
                 });
             })
-            .catch(error => console.error('Error loading news:', error));
+            .catch(error => {
+                hideLoading();
+                showError(`Error loading news: ${error.message}`);
+                console.error('Error loading news:', error);
+            });
     }
 
     function deleteNews(id) {
-        if (confirm('Are you sure you want to delete this news item?')) {
-            fetch('api/delete_news.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id: id })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    loadNews();
-                } else {
-                    alert('Error deleting news: ' + data.message);
-                }
-            })
-            .catch(error => console.error('Error deleting news:', error));
+        if (!confirm('Are you sure you want to delete this news item?')) {
+            return;
         }
+
+        fetch('api/delete_news.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                loadNews();
+            } else {
+                throw new Error(data.message || 'Failed to delete news');
+            }
+        })
+        .catch(error => {
+            alert(`Error deleting news: ${error.message}`);
+            console.error('Error deleting news:', error);
+        });
     }
 
-    applyFiltersBtn.addEventListener('click', function() {
+    // Event Listeners
+    applyFiltersButton.addEventListener('click', function() {
         currentFilters = {
             date_from: document.getElementById('date_from').value,
             date_to: document.getElementById('date_to').value,
@@ -87,6 +137,11 @@ document.addEventListener('DOMContentLoaded', function() {
         updateActiveFilters();
         loadNews();
     });
+
+    // Auto-load news when filters change
+    document.getElementById('date_from').addEventListener('change', loadNews);
+    document.getElementById('date_to').addEventListener('change', loadNews);
+    document.getElementById('category').addEventListener('change', loadNews);
 
     // Load initial news
     loadNews();

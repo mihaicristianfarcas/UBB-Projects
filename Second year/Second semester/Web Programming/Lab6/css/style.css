@@ -107,10 +107,28 @@ textarea {
     flex: 1;
 }
 
+/* Loading and error states */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.no-news {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
 /* News list styles */
 .news-list {
     display: grid;
     gap: 20px;
+    min-height: 200px; /* Ensure space for loading state */
 }
 
 .news-item {
@@ -118,6 +136,11 @@ textarea {
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.news-item:hover {
+    transform: translateY(-2px);
 }
 
 .news-item h2 {

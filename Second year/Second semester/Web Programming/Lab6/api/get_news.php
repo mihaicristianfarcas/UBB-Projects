@@ -5,10 +5,20 @@ require_once '../config/db.php';
 header('Content-Type: application/json');
 
 try {
+    // Validate and sanitize input parameters
     $date_from = filter_input(INPUT_GET, 'date_from', FILTER_SANITIZE_STRING);
     $date_to = filter_input(INPUT_GET, 'date_to', FILTER_SANITIZE_STRING);
     $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
 
+    // Validate date format if provided
+    if ($date_from && !strtotime($date_from)) {
+        throw new Exception('Invalid date_from format');
+    }
+    if ($date_to && !strtotime($date_to)) {
+        throw new Exception('Invalid date_to format');
+    }
+
+    // Build the query
     $query = "SELECT n.*, u.username as producer 
               FROM news n 
               JOIN users u ON n.user_id = u.id 
@@ -32,6 +42,7 @@ try {
 
     $query .= " ORDER BY n.created_at DESC";
 
+    // Execute the query
     $stmt = $pdo->prepare($query);
     $stmt->execute($params);
     $news = $stmt->fetchAll();
@@ -41,9 +52,24 @@ try {
         $item['can_edit'] = isset($_SESSION['user_id']) && $item['user_id'] == $_SESSION['user_id'];
     }
 
-    echo json_encode($news);
+    // Return success response
+    echo json_encode([
+        'success' => true,
+        'data' => $news,
+        'count' => count($news)
+    ]);
+
+} catch (Exception $e) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'error' => $e->getMessage()
+    ]);
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Database error occurred'
+    ]);
 }
 ?> 
