@@ -30,9 +30,9 @@ if (!$news) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
-    $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
-    $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+    $title = filter_input(INPUT_POST, 'title');
+    $content = filter_input(INPUT_POST, 'content');
+    $category = filter_input(INPUT_POST, 'category');
 
     if (empty($title)) {
         $errors[] = "Title is required";

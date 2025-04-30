@@ -4,11 +4,21 @@ require_once '../config/db.php';
 
 header('Content-Type: application/json');
 
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 try {
+    // Log the request
+    error_log("GET request received with parameters: " . print_r($_GET, true));
+    
     // Validate and sanitize input parameters
-    $date_from = filter_input(INPUT_GET, 'date_from', FILTER_SANITIZE_STRING);
-    $date_to = filter_input(INPUT_GET, 'date_to', FILTER_SANITIZE_STRING);
-    $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
+    $date_from = filter_input(INPUT_GET, 'date_from');
+    $date_to = filter_input(INPUT_GET, 'date_to');
+    $category = filter_input(INPUT_GET, 'category');
+
+    // Log the processed parameters
+    error_log("Processed parameters - date_from: $date_from, date_to: $date_to, category: $category");
 
     // Validate date format if provided
     if ($date_from && !strtotime($date_from)) {
@@ -42,10 +52,17 @@ try {
 
     $query .= " ORDER BY n.created_at DESC";
 
+    // Log the query and parameters
+    error_log("Executing query: $query");
+    error_log("With parameters: " . print_r($params, true));
+
     // Execute the query
     $stmt = $pdo->prepare($query);
     $stmt->execute($params);
     $news = $stmt->fetchAll();
+
+    // Log the results
+    error_log("Query returned " . count($news) . " results");
 
     // Add can_edit flag for each news item
     foreach ($news as &$item) {
@@ -53,19 +70,17 @@ try {
     }
 
     // Return success response
-    echo json_encode([
-        'success' => true,
-        'data' => $news,
-        'count' => count($news)
-    ]);
+    echo json_encode($news);
 
 } catch (Exception $e) {
+    error_log("Error in get_news.php: " . $e->getMessage());
     http_response_code(400);
     echo json_encode([
         'success' => false,
         'error' => $e->getMessage()
     ]);
 } catch (PDOException $e) {
+    error_log("Database error in get_news.php: " . $e->getMessage());
     http_response_code(500);
     echo json_encode([
         'success' => false,

@@ -51,19 +51,31 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showLoading();
         const params = new URLSearchParams(currentFilters);
+        const url = `api/get_news.php?${params}`;
+        console.log('Fetching news from:', url);
         
-        fetch(`api/get_news.php?${params}`)
+        fetch(url)
             .then(response => {
+                console.log('Response status:', response.status);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.json();
+                return response.text().then(text => {
+                    console.log('Raw response:', text);
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error('JSON parse error:', e);
+                        throw new Error('Invalid JSON response');
+                    }
+                });
             })
             .then(data => {
+                console.log('Parsed data:', data);
                 hideLoading();
                 newsList.innerHTML = '';
                 
-                if (data.length === 0) {
+                if (!data || data.length === 0) {
                     newsList.innerHTML = '<div class="no-news">No news found matching your criteria.</div>';
                     return;
                 }

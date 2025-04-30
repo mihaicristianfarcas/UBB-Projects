@@ -3,7 +3,7 @@ session_start();
 require_once 'config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $username = filter_input(INPUT_POST, 'username');
     $password = $_POST['password'];
 
     $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = ?");
