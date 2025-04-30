@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="news-meta">
                             <span class="producer">By: ${news.producer}</span>
                             <span class="category">Category: ${news.category}</span>
+                            <span class="importance">Importance: ${news.importance}</span>
                             <span class="date">${formatDate(news.created_at)}</span>
                         </div>
                         <div class="news-content">${news.content}</div>
