@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = filter_input(INPUT_POST, 'title');
     $content = filter_input(INPUT_POST, 'content');
     $category = filter_input(INPUT_POST, 'category');
+    $importance = filter_input(INPUT_POST, 'importance');
 
     if (empty($title)) {
         $errors[] = "Title is required";
@@ -43,11 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($category)) {
         $errors[] = "Category is required";
     }
+    if (empty($importance)) {
+        $errors[] = "Importance is required";
+    }
 
     if (empty($errors)) {
         try {
-            $stmt = $pdo->prepare("UPDATE news SET title = ?, content = ?, category = ? WHERE id = ? AND user_id = ?");
-            if ($stmt->execute([$title, $content, $category, $id, $_SESSION['user_id']])) {
+            $stmt = $pdo->prepare("UPDATE news SET title = ?, content = ?, category = ?, importance = ? WHERE id = ? AND user_id = ?");
+            if ($stmt->execute([$title, $content, $category, $importance, $id, $_SESSION['user_id']])) {
                 header('Location: index.php');
                 exit();
             } else {
@@ -97,6 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="sports" <?php echo $news['category'] === 'sports' ? 'selected' : ''; ?>>Sports</option>
                     <option value="entertainment" <?php echo $news['category'] === 'entertainment' ? 'selected' : ''; ?>>Entertainment</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="importance">Importance</label>
+                <input type="text" id="importance" name="importance" value="<?php echo htmlspecialchars($news['importance']); ?>" required>
             </div>
             
             <div class="form-group">
