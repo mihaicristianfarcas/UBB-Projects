@@ -1,0 +1,84 @@
+<h1>News Feed</h1>
+
+<div class="filters">
+  <div class="filter-group">
+    <label for="date_from">From Date</label>
+    <input type="date" id="date_from" name="date_from" [(ngModel)]="filters.date_from">
+  </div>
+  <div class="filter-group">
+    <label for="date_to">To Date</label>
+    <input type="date" id="date_to" name="date_to" [(ngModel)]="filters.date_to">
+  </div>
+  <div class="filter-group">
+    <label for="category">Category</label>
+    <select id="category" name="category" [(ngModel)]="filters.category">
+      <option value="">All Categories</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+  <div class="filter-actions">
+    <button (click)="applyFilters()">Apply Filters</button>
+    <button class="btn-secondary" (click)="clearFilters()" *ngIf="hasActiveFilters()">Clear Filters</button>
+  </div>
+</div>
+
+<div class="active-filters" *ngIf="hasActiveFilters() || filterHistory.length > 0">
+  <div class="filter-section" *ngIf="hasActiveFilters()">
+    <h3>Active filters:</h3>
+    <div class="filter-tags">
+      <span *ngIf="filters.date_from">
+        <i class="filter-icon">📅</i> From: {{ filters.date_from }}
+      </span>
+      <span *ngIf="filters.date_to">
+        <i class="filter-icon">📅</i> To: {{ filters.date_to }}
+      </span>
+      <span *ngIf="filters.category">
+        <i class="filter-icon">🏷️</i> Category: {{ filters.category }}
+      </span>
+    </div>
+  </div>
+  
+  <div class="filter-section" *ngIf="filterHistory.length > 0">
+    <h3>Previous filters:</h3>
+    <ul class="filter-history">
+      <li *ngFor="let filter of filterHistory">
+        <div>
+          <span *ngIf="filter.date_from">
+            <i class="filter-icon">📅</i> From: {{ filter.date_from }}
+          </span>
+          <span *ngIf="filter.date_to">
+            <i class="filter-icon">📅</i> To: {{ filter.date_to }}
+          </span>
+          <span *ngIf="filter.category">
+            <i class="filter-icon">🏷️</i> Category: {{ filter.category }}
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="loading" class="loading">Loading news...</div>
+
+<div *ngIf="error" class="alert alert-error">{{ error }}</div>
+
+<div *ngIf="!loading && !error && news.length === 0" class="no-news">
+  No news items found matching your criteria.
+</div>
+
+<div class="news-list" *ngIf="!loading && news.length > 0">
+  <div class="news-item" *ngFor="let item of news">
+    <h2>{{ item.title }}</h2>
+    <div class="news-meta">
+      <span class="producer">By: {{ item.producer }}</span>
+      <span class="category">Category: {{ item.category }}</span>
+      <span class="importance">Importance: {{ item.importance }}</span>
+      <span class="date">{{ formatDate(item.created_at) }}</span>
+    </div>
+    <div class="news-content">{{ item.content }}</div>
+    <div class="news-actions" *ngIf="authService.isLoggedIn && item.can_edit">
+      <a [routerLink]="['/edit-news', item.id]" class="btn">Edit</a>
+      <button class="btn btn-error" (click)="deleteNews(item.id)">Delete</button>
+    </div>
+  </div>
+</div>
