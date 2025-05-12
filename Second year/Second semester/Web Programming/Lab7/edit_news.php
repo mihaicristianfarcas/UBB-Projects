@@ -2,10 +2,36 @@
 session_start();
 require_once 'config/db.php';
 
+header('Access-Control-Allow-Origin: http://localhost:4200');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Handle OPTIONS preflight request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+// Set content type to JSON for API requests
+if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false || 
+    strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false) {
+    header('Content-Type: application/json');
+    $isApi = true;
+} else {
+    $isApi = false;
+}
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
+    if ($isApi) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+        exit();
+    } else {
+        header('Location: login.php');
+        exit();
+    }
 }
 
 $errors = [];
@@ -15,8 +41,14 @@ $news = null;
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if (!$id) {
-    header('Location: index.php');
-    exit();
+    if ($isApi) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Invalid news ID']);
+        exit();
+    } else {
+        header('Location: index.php');
+        exit();
+    }
 }
 
 // Get news item
@@ -25,8 +57,14 @@ $stmt->execute([$id, $_SESSION['user_id']]);
 $news = $stmt->fetch();
 
 if (!$news) {
-    header('Location: index.php');
-    exit();
+    if ($isApi) {
+        http_response_code(404);
+        echo json_encode(['success' => false, 'message' => 'News not found or you do not have permission']);
+        exit();
+    } else {
+        header('Location: index.php');
+        exit();
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -52,8 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $pdo->prepare("UPDATE news SET title = ?, content = ?, category = ?, importance = ? WHERE id = ? AND user_id = ?");
             if ($stmt->execute([$title, $content, $category, $importance, $id, $_SESSION['user_id']])) {
-                header('Location: index.php');
-                exit();
+                if ($isApi) {
+                    echo json_encode(['success' => true]);
+                    exit();
+                } else {
+                    header('Location: index.php');
+                    exit();
+                }
             } else {
                 $errors[] = "Failed to update news";
             }
@@ -61,7 +104,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = "Database error: " . $e->getMessage();
         }
     }
+    
+    if (!empty($errors) && $isApi) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'errors' => $errors]);
+        exit();
+    }
 }
+
+// For API GET requests, return the news item
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $isApi) {
+    echo json_encode(['success' => true, 'news' => $news]);
+    exit();
+}
+
+// Only show HTML for browser requests
+if (!$isApi) {
 ?>
 
 <!DOCTYPE html>
@@ -120,4 +178,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </body>
-</html> 
+</html>
+<?php } ?> 

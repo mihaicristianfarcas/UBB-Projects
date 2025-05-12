@@ -2,15 +2,42 @@
 session_start();
 require_once 'config/db.php';
 
+header('Access-Control-Allow-Origin: http://localhost:4200');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Handle OPTIONS preflight request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
+    if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+        header('Content-Type: application/json');
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+        exit();
+    } else {
+        header('Location: login.php');
+        exit();
+    }
 }
 
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Set content type to JSON for API requests
+    if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false || 
+        strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false) {
+        header('Content-Type: application/json');
+        $isApi = true;
+    } else {
+        $isApi = false;
+    }
+
     $title = filter_input(INPUT_POST, 'title');
     $content = filter_input(INPUT_POST, 'content');
     $category = filter_input(INPUT_POST, 'category');
@@ -33,8 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $pdo->prepare("INSERT INTO news (title, content, category, importance, user_id) VALUES (?, ?, ?, ?, ?)");
             if ($stmt->execute([$title, $content, $category, $importance, $_SESSION['user_id']])) {
-                header('Location: index.php');
-                exit();
+                if ($isApi) {
+                    echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
+                    exit();
+                } else {
+                    header('Location: index.php');
+                    exit();
+                }
             } else {
                 $errors[] = "Failed to add news";
             }
@@ -42,7 +74,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = "Database error: " . $e->getMessage();
         }
     }
+    
+    if (!empty($errors) && $isApi) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'errors' => $errors]);
+        exit();
+    }
 }
+
+// Only show HTML for browser requests
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($isApi) || !$isApi) {
 ?>
 
 <!DOCTYPE html>
@@ -101,4 +142,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </body>
-</html> 
+</html>
+<?php } ?> 

@@ -3,6 +3,8 @@ session_start();
 require_once '../config/db.php';
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: http://localhost:4200');
+header('Access-Control-Allow-Credentials: true');
 
 // Enable error reporting
 error_reporting(E_ALL);
