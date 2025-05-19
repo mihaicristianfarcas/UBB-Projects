@@ -2,16 +2,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsService.Data;
 using NewsService.Models;
+using NewsService.Extensions;
 
 namespace NewsService.Controllers
 {
     public class NewsController : BaseController
     {
         private readonly ApplicationDbContext _context;
+        private const string PreviousFiltersKey = "PreviousFilters";
+        private const int MaxPreviousFilters = 5;
 
         public NewsController(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        private void SaveFilterToHistory(NewsFilter filter)
+        {
+            var filters = HttpContext.Session.GetObject<List<NewsFilter>>(PreviousFiltersKey) ?? new List<NewsFilter>();
+            
+            // Add new filter if it's not already in the list
+            if (!filters.Any(f => 
+                f.StartDate == filter.StartDate && 
+                f.EndDate == filter.EndDate && 
+                f.Category == filter.Category))
+            {
+                filters.Add(filter);
+                // Keep only the last N filters
+                if (filters.Count > MaxPreviousFilters)
+                {
+                    filters.RemoveAt(0);
+                }
+                HttpContext.Session.SetObject(PreviousFiltersKey, filters);
+            }
         }
 
         public async Task<IActionResult> Index(DateTime? startDate, DateTime? endDate, string category)
@@ -27,10 +50,23 @@ namespace NewsService.Controllers
             if (!string.IsNullOrEmpty(category))
                 query = query.Where(n => n.Category == category);
 
+            // Save filter to history if any filter is applied
+            if (startDate.HasValue || endDate.HasValue || !string.IsNullOrEmpty(category))
+            {
+                var filter = new NewsFilter
+                {
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    Category = category
+                };
+                SaveFilterToHistory(filter);
+            }
+
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
             ViewBag.Category = category;
             ViewBag.Categories = await _context.News.Select(n => n.Category).Distinct().ToListAsync();
+            ViewBag.PreviousFilters = HttpContext.Session.GetObject<List<NewsFilter>>(PreviousFiltersKey);
 
             return View(await query.OrderByDescending(n => n.CreatedAt).ToListAsync());
         }
