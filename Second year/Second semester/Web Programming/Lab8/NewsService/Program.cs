@@ -3,13 +3,13 @@ using NewsService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add MVC support
 builder.Services.AddControllersWithViews();
 
 // Configure MySQL connection
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mySqlOptions => mySqlOptions.EnableRetryOnFailure()));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Add session support
 builder.Services.AddDistributedMemoryCache();
@@ -22,26 +22,18 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+// Basic middleware for local development
+app.UseDeveloperExceptionPage();
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
+app.UseStaticFiles(); // Serve files from wwwroot
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.UseSession();
 
+// Default MVC route
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

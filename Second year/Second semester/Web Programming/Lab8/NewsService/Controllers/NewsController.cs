@@ -28,7 +28,7 @@ namespace NewsService.Controllers
                 f.Category == filter.Category))
             {
                 filters.Add(filter);
-                // Keep only the last N filters
+                // Keep only the last MaxPreviousFilters filters
                 if (filters.Count > MaxPreviousFilters)
                 {
                     filters.RemoveAt(0);
