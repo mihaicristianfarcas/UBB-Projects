@@ -1,0 +1,84 @@
+Visualizing the benchmark functions...
+
+Running optimization experiments...
+Running experiment: Rastrigin, BINARY, ONE_POINT
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Rastrigin, BINARY, TWO_POINT
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Rastrigin, REAL, ARITHMETIC
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Rastrigin, REAL, BLX_ALPHA
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Ackley, BINARY, ONE_POINT
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Ackley, BINARY, TWO_POINT
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Ackley, REAL, ARITHMETIC
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+Running experiment: Ackley, REAL, BLX_ALPHA
+  Run 1/5
+  Run 2/5
+  Run 3/5
+  Run 4/5
+  Run 5/5
+
+Performing statistical analysis...
+Summary Statistics:
+    Function Encoding   Crossover Best Fitness                                   Convergence Generation          
+                                          mean       std           min       max                   mean       std
+0     Ackley   BINARY   ONE_POINT     0.179178  0.127292  2.198261e-02  0.329801                    4.2  3.563706
+1     Ackley   BINARY   TWO_POINT     0.203900  0.153908  7.414836e-02  0.453280                    6.6  6.542171
+2     Ackley     REAL  ARITHMETIC     0.000209  0.000440  9.180041e-07  0.000996                    4.4  2.701851
+3     Ackley     REAL   BLX_ALPHA     0.000179  0.000062  8.482502e-05  0.000243                    3.8  3.701351
+4  Rastrigin   BINARY   ONE_POINT     0.595894  0.395769  2.259759e-01  1.034496                    3.0  1.414214
+5  Rastrigin   BINARY   TWO_POINT     1.574043  1.195315  4.102886e-01  3.545720                    2.0  1.000000
+6  Rastrigin     REAL  ARITHMETIC     0.086910  0.193632  3.244019e-05  0.433289                    3.6  2.880972
+7  Rastrigin     REAL   BLX_ALPHA     0.000014  0.000023  6.074908e-07  0.000054                    3.6  2.302173
+
+Statistical Tests:
+
+Analysis for Rastrigin:
+  Binary vs Real encoding (t-test): t=3.3115, p=0.0086
+  Significant difference between encodings
+  ONE_POINT vs TWO_POINT crossover (BINARY): t=-1.7371, p=0.1445
+  No significant difference between crossover types for BINARY
+  ARITHMETIC vs BLX_ALPHA crossover (REAL): t=1.0035, p=0.3724
+  No significant difference between crossover types for REAL
+
+Analysis for Ackley:
+  Binary vs Real encoding (t-test): t=4.5227, p=0.0014
+  Significant difference between encodings
+  ONE_POINT vs TWO_POINT crossover (BINARY): t=-0.2768, p=0.7892
+  No significant difference between crossover types for BINARY
+  ARITHMETIC vs BLX_ALPHA crossover (REAL): t=0.1500, p=0.8877
+  No significant difference between crossover types for REAL
+
+Experiment completed successfully!
