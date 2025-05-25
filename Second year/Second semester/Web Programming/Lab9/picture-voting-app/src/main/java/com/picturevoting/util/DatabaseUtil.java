@@ -6,12 +6,42 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class DatabaseUtil {
     private static final Logger LOGGER = Logger.getLogger(DatabaseUtil.class.getName());
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/picture_voting_db";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "password";
+    private static String DB_URL;
+    private static String DB_USER;
+    private static String DB_PASSWORD;
     
+    // Load database configuration from properties file
+    static {
+        Properties props = new Properties();
+        try (InputStream input = DatabaseUtil.class.getClassLoader().getResourceAsStream("database.properties")) {
+            if (input == null) {
+                LOGGER.log(Level.WARNING, "database.properties file not found, using default values");
+                // Default values as fallback
+                DB_URL = "jdbc:mysql://localhost:3306/picture_voting_db";
+                DB_USER = "root";
+                DB_PASSWORD = "password";
+            } else {
+                props.load(input);
+                DB_URL = props.getProperty("db.url", "jdbc:mysql://localhost:3306/picture_voting_db");
+                DB_USER = props.getProperty("db.user", "root");
+                DB_PASSWORD = props.getProperty("db.password", "password");
+            }
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Could not load database properties", e);
+            // Default values as fallback
+            DB_URL = "jdbc:mysql://localhost:3306/picture_voting_db";
+            DB_USER = "root";
+            DB_PASSWORD = "password";
+        }
+    }
+    
+    // Initialize JDBC driver and database
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
