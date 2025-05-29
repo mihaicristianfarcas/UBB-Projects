@@ -2,83 +2,283 @@ Visualizing the benchmark functions...
 
 Running optimization experiments...
 Running experiment: Rastrigin, BINARY, ONE_POINT
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Rastrigin, BINARY, TWO_POINT
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Rastrigin, REAL, ARITHMETIC
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Rastrigin, REAL, BLX_ALPHA
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Ackley, BINARY, ONE_POINT
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Ackley, BINARY, TWO_POINT
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Ackley, REAL, ARITHMETIC
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 Running experiment: Ackley, REAL, BLX_ALPHA
-  Run 1/5
-  Run 2/5
-  Run 3/5
-  Run 4/5
-  Run 5/5
+  Run 1/30
+  Run 2/30
+  Run 3/30
+  Run 4/30
+  Run 5/30
+  Run 6/30
+  Run 7/30
+  Run 8/30
+  Run 9/30
+  Run 10/30
+  Run 11/30
+  Run 12/30
+  Run 13/30
+  Run 14/30
+  Run 15/30
+  Run 16/30
+  Run 17/30
+  Run 18/30
+  Run 19/30
+  Run 20/30
+  Run 21/30
+  Run 22/30
+  Run 23/30
+  Run 24/30
+  Run 25/30
+  Run 26/30
+  Run 27/30
+  Run 28/30
+  Run 29/30
+  Run 30/30
 
 Performing statistical analysis...
 Summary Statistics:
-    Function Encoding   Crossover Best Fitness                                   Convergence Generation          
-                                          mean       std           min       max                   mean       std
-0     Ackley   BINARY   ONE_POINT     0.179178  0.127292  2.198261e-02  0.329801                    4.2  3.563706
-1     Ackley   BINARY   TWO_POINT     0.203900  0.153908  7.414836e-02  0.453280                    6.6  6.542171
-2     Ackley     REAL  ARITHMETIC     0.000209  0.000440  9.180041e-07  0.000996                    4.4  2.701851
-3     Ackley     REAL   BLX_ALPHA     0.000179  0.000062  8.482502e-05  0.000243                    3.8  3.701351
-4  Rastrigin   BINARY   ONE_POINT     0.595894  0.395769  2.259759e-01  1.034496                    3.0  1.414214
-5  Rastrigin   BINARY   TWO_POINT     1.574043  1.195315  4.102886e-01  3.545720                    2.0  1.000000
-6  Rastrigin     REAL  ARITHMETIC     0.086910  0.193632  3.244019e-05  0.433289                    3.6  2.880972
-7  Rastrigin     REAL   BLX_ALPHA     0.000014  0.000023  6.074908e-07  0.000054                    3.6  2.302173
+    Function Encoding   Crossover  Best Fitness                                           Convergence Generation          
+                                           mean           std           min           max                   mean       std
+0     Ackley   BINARY   ONE_POINT  1.318021e-01  1.173744e-01  8.199676e-03  4.716264e-01               4.833333  3.869272
+1     Ackley   BINARY   TWO_POINT  1.875472e-01  2.231714e-01  7.562675e-03  9.689119e-01               4.466667  3.588615
+2     Ackley     REAL  ARITHMETIC  1.145163e-04  2.841697e-04  7.105427e-15  1.360216e-03               5.233333  3.953901
+3     Ackley     REAL   BLX_ALPHA  3.096758e-10  5.604689e-10  9.706014e-12  2.796344e-09               3.966667  2.834314
+4  Rastrigin   BINARY   ONE_POINT  4.328597e-01  4.974397e-01  2.588875e-03  1.762937e+00               4.533333  2.609444
+5  Rastrigin   BINARY   TWO_POINT  6.107105e-01  5.746422e-01  2.443566e-03  2.169846e+00               4.133333  3.002681
+6  Rastrigin     REAL  ARITHMETIC  6.230941e-04  1.847987e-03  0.000000e+00  8.933052e-03               3.133333  1.775957
+7  Rastrigin     REAL   BLX_ALPHA  1.030879e-12  5.631603e-12  0.000000e+00  3.084821e-11               2.566667  1.524135
 
 Statistical Tests:
 
 Analysis for Rastrigin:
-  Binary vs Real encoding (t-test): t=3.3115, p=0.0086
+  Binary vs Real encoding (t-test): t=7.4754, p=0.0000
   Significant difference between encodings
-  ONE_POINT vs TWO_POINT crossover (BINARY): t=-1.7371, p=0.1445
+  ONE_POINT vs TWO_POINT crossover (BINARY): t=-1.2817, p=0.2052
   No significant difference between crossover types for BINARY
-  ARITHMETIC vs BLX_ALPHA crossover (REAL): t=1.0035, p=0.3724
+  ARITHMETIC vs BLX_ALPHA crossover (REAL): t=1.8468, p=0.0750
   No significant difference between crossover types for REAL
 
 Analysis for Ackley:
-  Binary vs Real encoding (t-test): t=4.5227, p=0.0014
+  Binary vs Real encoding (t-test): t=6.9071, p=0.0000
   Significant difference between encodings
-  ONE_POINT vs TWO_POINT crossover (BINARY): t=-0.2768, p=0.7892
+  ONE_POINT vs TWO_POINT crossover (BINARY): t=-1.2109, p=0.2324
   No significant difference between crossover types for BINARY
-  ARITHMETIC vs BLX_ALPHA crossover (REAL): t=0.1500, p=0.8877
-  No significant difference between crossover types for REAL
+  ARITHMETIC vs BLX_ALPHA crossover (REAL): t=2.2072, p=0.0354
+  Significant difference between crossover types for REAL
 
 Experiment completed successfully!

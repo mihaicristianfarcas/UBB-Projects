@@ -21,7 +21,7 @@ def main():
     
     # Run experiments
     print("\nRunning optimization experiments...")
-    results = run_all_experiments(functions, domains, function_names, num_runs=5, max_evaluations=2000)
+    results = run_all_experiments(functions, domains, function_names, num_runs=30, max_evaluations=5000)
     
     # Perform statistical analysis
     print("\nPerforming statistical analysis...")
