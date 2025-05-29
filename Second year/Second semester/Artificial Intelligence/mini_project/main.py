@@ -21,8 +21,6 @@ def main():
     
     # Run experiments
     print("\nRunning optimization experiments...")
-    # For demonstration, use fewer runs and evaluations
-    # You can increase these parameters for the final version
     results = run_all_experiments(functions, domains, function_names, num_runs=5, max_evaluations=2000)
     
     # Perform statistical analysis
