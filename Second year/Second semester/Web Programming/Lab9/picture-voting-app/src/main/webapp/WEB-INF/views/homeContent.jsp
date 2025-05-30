@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <div class="mb-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Top Pictures</h2>
@@ -24,7 +27,14 @@
                                     <small>By ${picture.uploaderUsername}</small>
                                 </p>
                                 <p class="card-text">
-                                    ${fn:length(picture.description) > 100 ? fn:substring(picture.description, 0, 100)}...
+                                    <c:choose>
+                                        <c:when test="${fn:length(picture.description) > 100}">
+                                            ${fn:substring(picture.description, 0, 100)}...
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${picture.description}
+                                        </c:otherwise>
+                                    </c:choose>
                                 </p>
                             </div>
                             <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
@@ -65,7 +75,14 @@
                         <div class="card-body">
                             <h5 class="card-title">${picture.title}</h5>
                             <p class="card-text">
-                                ${fn:length(picture.description) > 100 ? fn:substring(picture.description, 0, 100)}...
+                                <c:choose>
+                                    <c:when test="${fn:length(picture.description) > 100}">
+                                        ${fn:substring(picture.description, 0, 100)}...
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${picture.description}
+                                    </c:otherwise>
+                                </c:choose>
                             </p>
                         </div>
                         <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">

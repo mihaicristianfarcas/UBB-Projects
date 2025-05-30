@@ -59,17 +59,19 @@
 
     <main class="container my-4">
         <!-- Messages -->
-        <c:if test="${not empty requestScope.message}">
+        <c:if test="${not empty requestScope.message or not empty sessionScope.message}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                ${requestScope.message}
+                ${not empty requestScope.message ? requestScope.message : sessionScope.message}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <c:remove var="message" scope="session" />
         </c:if>
-        <c:if test="${not empty requestScope.error}">
+        <c:if test="${not empty requestScope.error or not empty sessionScope.error}">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                ${requestScope.error}
+                ${not empty requestScope.error ? requestScope.error : sessionScope.error}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <c:remove var="error" scope="session" />
         </c:if>
         
         <!-- Page Content -->

@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <div class="container text-center py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
