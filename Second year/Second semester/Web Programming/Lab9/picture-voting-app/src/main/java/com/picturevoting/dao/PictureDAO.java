@@ -35,8 +35,8 @@ public class PictureDAO {
                                                   "GROUP BY p.id " +
                                                   "ORDER BY vote_count DESC " +
                                                   "LIMIT ?";
-    private static final String ADD_VOTE = "INSERT INTO votes (picture_id, voter_id, value) VALUES (?, ?, 1) " +
-                                         "ON DUPLICATE KEY UPDATE value = value + 1";
+    private static final String ADD_VOTE = "INSERT INTO votes (picture_id, voter_id, value) VALUES (?, ?, ?) " +
+                                         "ON DUPLICATE KEY UPDATE value = ?";
     private static final String DELETE_PICTURE = "DELETE FROM pictures WHERE id = ? AND user_id = ?";
     
     public boolean addPicture(Picture picture) {
@@ -140,12 +140,14 @@ public class PictureDAO {
         return pictures;
     }
     
-    public boolean addVote(int pictureId, int voterId) {
+    public boolean addVote(int pictureId, int voterId, int voteValue) {
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(ADD_VOTE)) {
             
             stmt.setInt(1, pictureId);
             stmt.setInt(2, voterId);
+            stmt.setInt(3, voteValue);
+            stmt.setInt(4, voteValue); // For the ON DUPLICATE KEY UPDATE part
             
             int affectedRows = stmt.executeUpdate();
             return affectedRows > 0;

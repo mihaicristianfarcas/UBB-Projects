@@ -14,7 +14,6 @@ import java.io.IOException;
 
 @WebServlet("/delete-picture")
 public class DeletePictureServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private final PictureDAO pictureDAO = new PictureDAO();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

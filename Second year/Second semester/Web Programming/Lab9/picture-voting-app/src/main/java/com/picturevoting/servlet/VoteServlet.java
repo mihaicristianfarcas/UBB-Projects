@@ -13,8 +13,9 @@ import java.io.IOException;
 
 @WebServlet("/vote")
 public class VoteServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private final PictureDAO pictureDAO = new PictureDAO();
+    private static final int MIN_VOTE = 1;
+    private static final int MAX_VOTE = 10;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -29,19 +30,24 @@ public class VoteServlet extends HttpServlet {
 
         try {
             int pictureId = Integer.parseInt(request.getParameter("pictureId"));
+            int voteValue = Integer.parseInt(request.getParameter("voteValue"));
             
-            // Check if the user is trying to vote on their own picture
-            // This check would be more efficient with a direct database query
-            // but for simplicity, we'll handle it in the application layer
+            // Validate vote value
+            if (voteValue < MIN_VOTE || voteValue > MAX_VOTE) {
+                throw new IllegalArgumentException("Vote must be between " + MIN_VOTE + " and " + MAX_VOTE);
+            }
             
             // Add the vote
-            if (pictureDAO.addVote(pictureId, user.getId())) {
-                message = "Vote recorded successfully!";
+            if (pictureDAO.addVote(pictureId, user.getId(), voteValue)) {
+                message = String.format("Vote of %d recorded successfully!", voteValue);
             } else {
                 throw new Exception("Failed to record vote");
             }
         } catch (NumberFormatException e) {
-            message = "Invalid picture ID";
+            message = "Invalid input. Please enter valid numbers.";
+            isError = true;
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
             isError = true;
         } catch (Exception e) {
             message = "Error: " + e.getMessage();

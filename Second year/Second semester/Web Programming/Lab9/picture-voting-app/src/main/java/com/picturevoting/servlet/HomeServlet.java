@@ -13,7 +13,6 @@ import java.io.IOException;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private final PictureDAO pictureDAO = new PictureDAO();
     private static final int DEFAULT_TOP_COUNT = 10;
 

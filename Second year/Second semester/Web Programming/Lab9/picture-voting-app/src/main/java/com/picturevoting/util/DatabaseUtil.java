@@ -25,19 +25,19 @@ public class DatabaseUtil {
                 // Default values as fallback
                 DB_URL = "jdbc:mysql://localhost:3306/picture_voting";
                 DB_USER = "root";
-                DB_PASSWORD = "password";
+                DB_PASSWORD = "";
             } else {
                 props.load(input);
                 DB_URL = props.getProperty("db.url", "jdbc:mysql://localhost:3306/picture_voting");
                 DB_USER = props.getProperty("db.user", "root");
-                DB_PASSWORD = props.getProperty("db.password", "password");
+                DB_PASSWORD = props.getProperty("db.password", "");
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Could not load database properties", e);
             // Default values as fallback
             DB_URL = "jdbc:mysql://localhost:3306/picture_voting";
             DB_USER = "root";
-            DB_PASSWORD = "password";
+            DB_PASSWORD = "";
         }
     }
     

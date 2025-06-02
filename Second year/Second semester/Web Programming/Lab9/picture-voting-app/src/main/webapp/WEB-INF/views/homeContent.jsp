@@ -44,10 +44,14 @@
                                     </span>
                                 </div>
                                 <c:if test="${sessionScope.user.id ne picture.userId}">
-                                    <form action="${pageContext.request.contextPath}/vote" method="post" class="d-inline">
+                                    <form action="${pageContext.request.contextPath}/vote" method="post" class="d-inline-flex align-items-center">
                                         <input type="hidden" name="pictureId" value="${picture.id}">
+                                        <div class="input-group input-group-sm me-2" style="width: 100px;">
+                                            <input type="number" name="voteValue" min="1" max="10" value="5" 
+                                                   class="form-control form-control-sm text-center" required>
+                                        </div>
                                         <button type="submit" class="btn btn-sm btn-outline-primary">
-                                            <i class="bi bi-hand-thumbs-up"></i> Vote
+                                            <i class="bi bi-star-fill"></i> Vote
                                         </button>
                                     </form>
                                 </c:if>
