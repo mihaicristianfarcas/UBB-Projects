@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Set Username";
+}
+
+<div class="max-w-md mx-auto px-4 py-8">
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-bold text-gray-900 text-center mb-2">Welcome to Simple Forum</h2>
+        <p class="text-gray-600 text-center mb-6">Please enter your username to continue:</p>
+
+        <form method="post" action="@Url.Action("SetUsername")" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username:</label>
+                <input type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    name="username" id="username" required />
+            </div>
+            <div class="text-center">
+                <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-200">Enter
+                    Forum</button>
+            </div>
+        </form>
+    </div>
+</div>

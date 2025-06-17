@@ -1,0 +1,82 @@
+﻿@model TopicsAndPosts.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Forum Home";
+}
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Simple Forum</h1>
+        <p class="text-gray-700">Welcome, <strong class="font-semibold">@Model.CurrentUser</strong>!
+            <a href="@Url.Action("Logout")" class="ml-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-md border transition duration-200">Logout</a>
+        </p>
+    </div>
+
+    @if (Model.RecentPosts.Any())
+    {
+        <div class="mb-6">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h5 class="text-lg font-semibold text-blue-900 mb-3">New Posts Since Your Last Visit:</h5>
+                @foreach (var recentPost in Model.RecentPosts)
+                {
+                    <div class="mb-3 last:mb-0">
+                        <strong class="font-semibold text-gray-900">@recentPost.User</strong> posted in <strong class="font-semibold text-gray-900">@recentPost.Topic?.TopicName</strong>:
+                        "@recentPost.Text"
+                        <small class="text-gray-500 ml-2">(@recentPost.Date.ToString("yyyy-MM-dd HH:mm"))</small>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <div class="mb-6">
+        <a href="@Url.Action("CreatePost")" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">Create New Post</a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">All Posts</h3>
+            @if (Model.Posts.Any())
+            {
+                @foreach (var post in Model.Posts)
+                {
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6 mb-4">
+                        <h5 class="text-lg font-semibold text-gray-900 mb-2">@post.Topic?.TopicName</h5>
+                        <p class="text-gray-700 mb-4">@post.Text</p>
+                        <div class="flex justify-between items-center">
+                            <small class="text-gray-500">
+                                By <strong class="font-semibold">@post.User</strong> on @post.Date.ToString("yyyy-MM-dd HH:mm")
+                            </small>
+                            <a href="@Url.Action("EditPost", new { id = post.Id })"
+                                class="bg-blue-100 hover:bg-blue-200 text-blue-700 text-sm px-3 py-1 rounded-md border border-blue-300 transition duration-200">Edit</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-gray-600">No posts yet. <a href="@Url.Action("CreatePost")" class="text-blue-600 hover:text-blue-800 underline">Create the first one!</a></p>
+            }
+        </div>
+
+        <div class="lg:col-span-1">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Topics</h3>
+            @if (Model.Topics.Any())
+            {
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+                    @foreach (var topic in Model.Topics)
+                    {
+                        <div class="px-4 py-3 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition duration-200">
+                            <a href="@Url.Action("TopicPosts", new { topicId = topic.Id })" class="text-blue-600 hover:text-blue-800 font-medium">@topic.TopicName</a>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-gray-600">No topics yet.</p>
+            }
+        </div>
+    </div>
+</div>
+
+                               

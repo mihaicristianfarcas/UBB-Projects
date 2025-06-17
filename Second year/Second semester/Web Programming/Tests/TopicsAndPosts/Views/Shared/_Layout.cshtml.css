@@ -1,0 +1,12 @@
+﻿/* Custom styles for ASP.NET Core application using Tailwind CSS */
+
+/* Mobile menu toggle functionality */
+#mobile-menu.hidden {
+    display: none;
+}
+
+#mobile-menu:not(.hidden) {
+    display: block;
+}
+
+/* Any additional custom styles can be added here */

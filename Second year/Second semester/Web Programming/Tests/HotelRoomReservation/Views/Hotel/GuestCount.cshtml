@@ -1,0 +1,25 @@
+@using HotelRoomReservation.Models
+@model GuestCountViewModel
+@{
+    ViewData["Title"] = "Guest Count";
+}
+
+<div class="max-w-md mx-auto p-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Hotel Guest Count</h2>
+    <form method="get" asp-action="GuestCount" class="bg-white border rounded p-4 mb-4 flex flex-col gap-3">
+        <label asp-for="Date" class="text-sm text-gray-600 mb-1">Select Date</label>
+        <input asp-for="Date" type="date" class="border rounded px-2 py-1 text-gray-700" />
+        <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 mt-2">Check Guest Count</button>
+    </form>
+    <div class="bg-blue-50 text-blue-700 rounded p-4 mb-4 text-sm">
+        <div class="font-medium">Total Guests on @Model.Date.ToString("MMMM dd, yyyy"): <span
+                class="font-bold">@Model.TotalGuests</span></div>
+        <div class="text-xs mt-1">Includes all guests with reservations for this date.</div>
+    </div>
+    <div class="flex gap-2 mt-4">
+        <a asp-action="AvailableRooms"
+            class="border border-blue-600 text-blue-600 rounded px-4 py-2 text-sm hover:bg-blue-50">Search Rooms</a>
+        <a asp-action="MyReservations"
+            class="border border-gray-400 text-gray-700 rounded px-4 py-2 text-sm hover:bg-gray-50">My Reservations</a>
+    </div>
+</div>

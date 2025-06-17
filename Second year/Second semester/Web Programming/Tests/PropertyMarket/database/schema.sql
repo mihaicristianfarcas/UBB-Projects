@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS User (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    secretQuestion VARCHAR(255) NOT NULL,
+    secretAnswer VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Property (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    address VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS UserToProperties (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idUser INT, 
+    FOREIGN KEY (idUser) REFERENCES User(id),
+    idProperty INT,
+    FOREIGN KEY (idProperty) REFERENCES Property(id)
+);

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Exam ASP.NET</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body class="min-h-screen bg-gray-50">
+    <header>
+        <nav class="bg-white border-b">
+            <div class="max-w-4xl mx-auto px-4 flex justify-between h-14 items-center">
+                <a class="text-lg font-bold text-gray-800" asp-controller="Home" asp-action="Index">Exam ASP.NET</a>
+                <div class="flex gap-4 items-center">
+                    <a asp-controller="Home" asp-action="Index"
+                        class="text-gray-600 hover:text-blue-600 text-sm">Home</a>
+                    @if (Context.Session.GetInt32("UserId") != null)
+                    {
+                        <a asp-controller="Hotel" asp-action="AvailableRooms"
+                            class="text-gray-600 hover:text-blue-600 text-sm">Rooms</a>
+                        <a asp-controller="Hotel" asp-action="MyReservations"
+                            class="text-gray-600 hover:text-blue-600 text-sm">Reservations</a>
+                        <a asp-controller="Hotel" asp-action="GuestCount"
+                            class="text-gray-600 hover:text-blue-600 text-sm">Guests</a>
+                    }
+                </div>
+                <div class="flex gap-2 items-center">
+                    @if (Context.Session.GetInt32("UserId") != null)
+                    {
+                        <span class="text-gray-500 text-xs">@Context.Session.GetString("Username")</span>
+                        <a asp-controller="Account" asp-action="Logout"
+                            class="text-gray-500 hover:text-red-600 text-xs">Logout</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login"
+                            class="text-gray-500 hover:text-blue-600 text-xs">Login</a>
+                        <a asp-controller="Account" asp-action="Register"
+                            class="text-gray-500 hover:text-blue-600 text-xs">Register</a>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="max-w-4xl mx-auto py-6 px-4">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
