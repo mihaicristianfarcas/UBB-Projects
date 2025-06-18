@@ -15,7 +15,7 @@ public class MovieDAO {
     private static final String GET_MOVIE_BY_ID = "SELECT * FROM movies WHERE id = ?";
     private static final String GET_MOVIE_BY_TITLE = "SELECT * FROM movies WHERE title = ?";
     private static final String GET_ALL_MOVIES = "SELECT * FROM movies";
-    private static final String DELETE_MOVIE_BY_ID = "DELETE FROM MOVIES WHERE id = ?";
+    private static final String DELETE_MOVIE_BY_ID = "DELETE FROM MOVIES WHERE title = ?";
 
     public Movie getMovieById(int id) {
         try (Connection conn = DatabaseUtil.getConnection();
@@ -64,17 +64,17 @@ public class MovieDAO {
         return movies;
     }
 
-    public boolean deleteMovieById(int id) {
+    public boolean deleteMovieByTitle(String title) {
         try (Connection conn = DatabaseUtil.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(DELETE_MOVIE_BY_ID)) {
-            stmt.setInt(1, id);
+            stmt.setString(1, title);
 
             AuthorDAO authorDAO = new AuthorDAO();
             List<Author> authors = authorDAO.getAllAuthors();
             for (Author author : authors) {
                 String movieList = author.getMovieList();
-                if (movieList != null && movieList.contains(String.valueOf(id))) {
-                    movieList = movieList.replace(String.valueOf(id), "").replace(",,", ",").replaceAll("^,|,$", "");
+                if (movieList != null && movieList.contains(title)) {
+                    movieList = movieList.replace(String.valueOf(title), "").replace(",,", ",").replaceAll("^,|,$", "");
                     author.setMovieList(movieList);
                     authorDAO.updateAuthorMovieList(author.getName(), movieList);
                 }
@@ -84,14 +84,6 @@ public class MovieDAO {
             return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean deleteMovieByTitle(String title) {
-        Movie movie = getMovieByTitle(title);
-        if (movie != null) {
-            return deleteMovieById(movie.getId());
         }
         return false;
     }
