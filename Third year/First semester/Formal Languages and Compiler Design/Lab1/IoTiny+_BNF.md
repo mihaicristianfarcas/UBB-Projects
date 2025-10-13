@@ -1,0 +1,87 @@
+# IoTiny+ - BNF Grammar
+
+## A lightweight DSL for IoT automation with functions and control structures
+
+<program> ::= <statement_list>
+
+<statement_list> ::= <statement> <statement_list> | <statement>
+
+<statement> ::= <listener_definition>
+| <trigger_call>
+| <send_command>
+| <assignment>
+| <if_statement>
+| <for_loop>
+| <function_definition>
+| <function_call>
+| <expression_statement>
+
+## Event Handling
+
+<listener_definition> ::= "on" <string> "when" <condition> ":" <block> "end"
+
+<trigger_call> ::= <string> "->" <expression>
+
+## Device Actions
+
+<send_command> ::= "send_command" <expression> "," <expression>
+
+## Functions
+
+<function_definition> ::= "func" <identifier> "(" <parameter_list> ")" ":" <block> "end"
+<parameter_list> ::= <identifier> <parameter_list_tail> | epsilon
+<parameter_list_tail> ::= "," <identifier> <parameter_list_tail> | epsilon
+
+<function_call> ::= <identifier> <argument_list>
+<argument_list> ::= <expression> <argument_list_tail> | epsilon
+<argument_list_tail> ::= "," <expression> <argument_list_tail> | epsilon
+
+## Control Flow
+
+<if_statement> ::= "if" <condition> ":" <block> "end"
+
+<for_loop> ::= "for" <identifier> "in" <expression> ":" <block> "end"
+
+## General Statements
+
+<assignment> ::= <identifier> "=" <expression>
+<expression_statement> ::= <expression>
+
+<block> ::= <statement_list>
+
+## Expressions
+
+<condition> ::= <expression> <relop> <expression>
+
+<expression> ::= <number>
+| <string>
+| <identifier>
+| <arithmetic_expr>
+| <function_call>
+| <list_literal>
+
+<arithmetic_expr> ::= <expression> <arith_op> <expression>
+
+<list_literal> ::= "[" <list_items> "]"
+<list_items> ::= <expression> <list_items_tail> | epsilon
+<list_items_tail> ::= "," <expression> <list_items_tail> | epsilon
+
+<relop> ::= ">" | "<" | "==" | "!=" | ">=" | "<="
+
+<arith_op> ::= "+" | "-" | "\*" | "/" | "%"
+
+## Lexical Definitions
+
+<identifier> ::= <letter> {<letter_or_digit_or_underscore>}
+
+<letter*or_digit_or_underscore> ::= <letter> | <digit> | "*"
+
+<letter> ::= "a" | ... | "z" | "A" | ... | "Z"
+
+<digit> ::= "0" | ... | "9"
+
+<number> ::= <digit> {<digit>}
+
+<string> ::= '"' {<string_char>} '"'
+
+<string*char> ::= <letter> | <digit> | " " | "*" | "-" | "."
