@@ -27,7 +27,9 @@ Read [](file:///Users/mihaicristianfarcas/Developer/UBB-Projects/Third%20year/Fi
 
 Alright, help me fix these issues.
 
-GitHub Copilot: Using "Apply Patch"
+### GitHub Copilot:
+
+Using "Apply Patch"
 
 Read [](file:///Users/mihaicristianfarcas/Developer/UBB-Projects/Third%20year/First%20semester/Formal%20Languages%20and%20Compiler%20Design/Lab2/IoTiny_BNF.md)
 
