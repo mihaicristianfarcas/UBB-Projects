@@ -1,0 +1,2 @@
+# Identifier Symbol Table (BST-backed)
+   0: temp

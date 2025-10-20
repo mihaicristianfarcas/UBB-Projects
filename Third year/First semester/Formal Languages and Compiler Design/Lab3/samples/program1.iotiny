@@ -1,0 +1,10 @@
+temp = 28
+
+on "temp_sensor" when temp > 30:
+    send_command "fan", "on"
+end
+
+# occasional check that logs or triggers (example expression statement)
+if temp > 30:
+    send_command "fan", "on"
+end

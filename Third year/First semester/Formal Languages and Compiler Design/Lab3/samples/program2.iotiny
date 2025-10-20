@@ -1,0 +1,20 @@
+# function to set light to a given state
+func set_light(device, state):
+    send_command device, state
+end
+
+lights = ["light1", "light2", "light3"]
+
+for d in lights:
+    # example: schedule check - pretend hour is provided by environment
+    if hour >= 18:
+        set_light(d, "on")
+    end
+end
+
+# manual override trigger
+on "manual_override" when cmd == "lights_off":
+    for d in lights:
+        set_light(d, "off")
+    end
+end

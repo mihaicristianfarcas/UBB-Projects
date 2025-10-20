@@ -1,0 +1,9 @@
+# Constant Symbol Table (hash-table-backed)
+   0: "light1"
+   1: "light2"
+   2: "light3"
+   3: 18
+   4: "on"
+   5: "manual_override"
+   6: "lights_off"
+   7: "off"

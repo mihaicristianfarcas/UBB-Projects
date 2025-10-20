@@ -1,0 +1,6 @@
+# Constant Symbol Table (hash-table-backed)
+   0: 28
+   1: "temp_sensor"
+   2: 30
+   3: "fan"
+   4: "on"

@@ -1,0 +1,8 @@
+# Identifier Symbol Table (BST-backed)
+   0: set_light
+   1: device
+   2: state
+   3: lights
+   4: d
+   5: hour
+   6: cmd
