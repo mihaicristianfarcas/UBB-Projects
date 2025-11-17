@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace PPDLab4
 {
     internal record DownloadRequest(string Host, string Path, string FileName, int Port = 80)
