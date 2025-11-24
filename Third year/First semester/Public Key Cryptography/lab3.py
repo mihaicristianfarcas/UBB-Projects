@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import argparse
 import math
 import random
@@ -45,10 +43,11 @@ def pollards_rho(
     y = x
     d = 1
 
-    for _ in range(max_iterations):
+    for i in range(max_iterations):
         x = _iterate(func, x, n)
         y = _iterate(func, _iterate(func, y, n), n)
         d = math.gcd(abs(x - y), n)
+        print(f"  Iteration {i}: x={x}, y={y}, d={d}")
         if d == 1:
             continue
         if d == n:
@@ -98,21 +97,28 @@ def factor_with_pollards_rho(
     factors: List[int] = []
 
     def _factor(m: int, x_start: int) -> None:
+        print(f"Attempting to factor: {m}")
         if m == 1:
             return
         if is_probably_prime(m):
+            print(f"Found prime factor: {m}")
             factors.append(m)
             return
 
         attempt = 0
         while attempt < attempt_limit:
+            print(f"  Pollard's rho attempt {
+                  attempt + 1} for n={m} with x0_seed={x_start}")
             seed = x_start if attempt == 0 else rng.randrange(2, m - 1)
             divisor = pollards_rho(
                 m, func, x0=seed, max_iterations=max_iterations
             )
             if divisor is None or divisor == m:
+                print(
+                    f"  Pollard's rho failed to find a non-trivial divisor or found n for n={m} with seed={seed}")
                 attempt += 1
                 continue
+            print(f"  Found non-trivial divisor: {divisor} for n={m}")
             _factor(divisor, seed)
             _factor(m // divisor, seed)
             return
