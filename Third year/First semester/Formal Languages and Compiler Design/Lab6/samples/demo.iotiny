@@ -1,0 +1,3 @@
+func main():
+    send_command "led", "on"
+end
