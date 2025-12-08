@@ -1,0 +1,18 @@
+Statement: Assignment for a team of 2 students!
+For the mini DSL, implement parsing (syntactical analysis)  using LL(1) or LR(0) algorithms. 
+Requirement 1: implement and test
+	Input: grammar from seminar, sequence
+	Output: string of productions
+Requirement 2: test
+Input: grammar for miniDSL, PIF
+	Output: The representation of the parsing tree (output) can be:
+ 	2.a. productions string (max grade = 8.5)
+ 	2.b. derivations string (max grade = 9)
+ 	2.c. table (using father and sibling relation) (max grade = 10)
+
+Delivery time: 2 week
+Deliverables: 
+	•	1 doc – documentation
+	•	Source code
+
+

@@ -1,0 +1,75 @@
+Derivations (Leftmost):
+0. program
+1. statement_list
+2. statement statement_list
+3. assignment_or_call statement_list
+4. identifier assignment_or_call_tail statement_list
+5. identifier = expression statement_list
+6. identifier = term expression_tail statement_list
+7. identifier = factor term_tail expression_tail statement_list
+8. identifier = integer_constant term_tail expression_tail statement_list
+9. identifier = integer_constant expression_tail statement_list
+10. identifier = integer_constant statement_list
+11. identifier = integer_constant statement statement_list
+12. identifier = integer_constant listener_definition statement_list
+13. identifier = integer_constant on string_constant when condition : block end statement_list
+14. identifier = integer_constant on string_constant when expression relop expression : block end statement_list
+15. identifier = integer_constant on string_constant when term expression_tail relop expression : block end statement_list
+16. identifier = integer_constant on string_constant when factor term_tail expression_tail relop expression : block end statement_list
+17. identifier = integer_constant on string_constant when identifier factor_call_tail term_tail expression_tail relop expression : block end statement_list
+18. identifier = integer_constant on string_constant when identifier term_tail expression_tail relop expression : block end statement_list
+19. identifier = integer_constant on string_constant when identifier expression_tail relop expression : block end statement_list
+20. identifier = integer_constant on string_constant when identifier relop expression : block end statement_list
+21. identifier = integer_constant on string_constant when identifier > expression : block end statement_list
+22. identifier = integer_constant on string_constant when identifier > term expression_tail : block end statement_list
+23. identifier = integer_constant on string_constant when identifier > factor term_tail expression_tail : block end statement_list
+24. identifier = integer_constant on string_constant when identifier > integer_constant term_tail expression_tail : block end statement_list
+25. identifier = integer_constant on string_constant when identifier > integer_constant expression_tail : block end statement_list
+26. identifier = integer_constant on string_constant when identifier > integer_constant : block end statement_list
+27. identifier = integer_constant on string_constant when identifier > integer_constant : statement_list end statement_list
+28. identifier = integer_constant on string_constant when identifier > integer_constant : statement statement_list end statement_list
+29. identifier = integer_constant on string_constant when identifier > integer_constant : send_command_stmt statement_list end statement_list
+30. identifier = integer_constant on string_constant when identifier > integer_constant : send_command expression , expression statement_list end statement_list
+31. identifier = integer_constant on string_constant when identifier > integer_constant : send_command term expression_tail , expression statement_list end statement_list
+32. identifier = integer_constant on string_constant when identifier > integer_constant : send_command factor term_tail expression_tail , expression statement_list end statement_list
+33. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant term_tail expression_tail , expression statement_list end statement_list
+34. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant expression_tail , expression statement_list end statement_list
+35. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , expression statement_list end statement_list
+36. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , term expression_tail statement_list end statement_list
+37. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , factor term_tail expression_tail statement_list end statement_list
+38. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant term_tail expression_tail statement_list end statement_list
+39. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant expression_tail statement_list end statement_list
+40. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant statement_list end statement_list
+41. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end statement_list
+42. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end statement statement_list
+43. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if_statement statement_list
+44. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if condition : block end statement_list
+45. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if expression relop expression : block end statement_list
+46. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if term expression_tail relop expression : block end statement_list
+47. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if factor term_tail expression_tail relop expression : block end statement_list
+48. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier factor_call_tail term_tail expression_tail relop expression : block end statement_list
+49. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier term_tail expression_tail relop expression : block end statement_list
+50. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier expression_tail relop expression : block end statement_list
+51. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier relop expression : block end statement_list
+52. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > expression : block end statement_list
+53. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > term expression_tail : block end statement_list
+54. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > factor term_tail expression_tail : block end statement_list
+55. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant term_tail expression_tail : block end statement_list
+56. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant expression_tail : block end statement_list
+57. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : block end statement_list
+58. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : statement_list end statement_list
+59. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : statement statement_list end statement_list
+60. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command_stmt statement_list end statement_list
+61. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command expression , expression statement_list end statement_list
+62. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command term expression_tail , expression statement_list end statement_list
+63. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command factor term_tail expression_tail , expression statement_list end statement_list
+64. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant term_tail expression_tail , expression statement_list end statement_list
+65. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant expression_tail , expression statement_list end statement_list
+66. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , expression statement_list end statement_list
+67. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , term expression_tail statement_list end statement_list
+68. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , factor term_tail expression_tail statement_list end statement_list
+69. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , string_constant term_tail expression_tail statement_list end statement_list
+70. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , string_constant expression_tail statement_list end statement_list
+71. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , string_constant statement_list end statement_list
+72. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , string_constant end statement_list
+73. identifier = integer_constant on string_constant when identifier > integer_constant : send_command string_constant , string_constant end if identifier > integer_constant : send_command string_constant , string_constant end
