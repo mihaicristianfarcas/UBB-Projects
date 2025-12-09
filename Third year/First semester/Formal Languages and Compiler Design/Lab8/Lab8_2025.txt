@@ -1,0 +1,11 @@
+Statement: Assignment for a team of 2 students!
+For the mini DSL parser 
+Requirement 1: use GenAI to translate source code to C
+Requirement 2: Validate generated code
+Requirement 3: Run and compare to yacc/ANTLR
+Delivery time: 2 weeks
+Deliverables: 
+	•	1 doc – documentation – R1: provide sequence of prompts, R2: explain validation process,  bug report, R3: show differences with yacc/ANTLR 
+	•	C Source code
+
+
