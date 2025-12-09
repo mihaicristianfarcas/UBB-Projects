@@ -1,0 +1,74 @@
+Productions:
+1. program -> statement_list
+2. statement_list -> statement statement_list
+3. statement -> assignment_or_call
+4. assignment_or_call -> identifier assignment_or_call_tail
+5. assignment_or_call_tail -> = expression
+6. expression -> term expression_tail
+7. term -> factor term_tail
+8. factor -> integer_constant
+9. term_tail -> epsilon
+10. expression_tail -> epsilon
+11. statement_list -> statement statement_list
+12. statement -> listener_definition
+13. listener_definition -> on string_constant when condition : block end
+14. condition -> expression relop expression
+15. expression -> term expression_tail
+16. term -> factor term_tail
+17. factor -> identifier factor_call_tail
+18. factor_call_tail -> epsilon
+19. term_tail -> epsilon
+20. expression_tail -> epsilon
+21. relop -> >
+22. expression -> term expression_tail
+23. term -> factor term_tail
+24. factor -> integer_constant
+25. term_tail -> epsilon
+26. expression_tail -> epsilon
+27. block -> statement_list
+28. statement_list -> statement statement_list
+29. statement -> send_command_stmt
+30. send_command_stmt -> send_command expression , expression
+31. expression -> term expression_tail
+32. term -> factor term_tail
+33. factor -> string_constant
+34. term_tail -> epsilon
+35. expression_tail -> epsilon
+36. expression -> term expression_tail
+37. term -> factor term_tail
+38. factor -> string_constant
+39. term_tail -> epsilon
+40. expression_tail -> epsilon
+41. statement_list -> epsilon
+42. statement_list -> statement statement_list
+43. statement -> if_statement
+44. if_statement -> if condition : block end
+45. condition -> expression relop expression
+46. expression -> term expression_tail
+47. term -> factor term_tail
+48. factor -> identifier factor_call_tail
+49. factor_call_tail -> epsilon
+50. term_tail -> epsilon
+51. expression_tail -> epsilon
+52. relop -> >
+53. expression -> term expression_tail
+54. term -> factor term_tail
+55. factor -> integer_constant
+56. term_tail -> epsilon
+57. expression_tail -> epsilon
+58. block -> statement_list
+59. statement_list -> statement statement_list
+60. statement -> send_command_stmt
+61. send_command_stmt -> send_command expression , expression
+62. expression -> term expression_tail
+63. term -> factor term_tail
+64. factor -> string_constant
+65. term_tail -> epsilon
+66. expression_tail -> epsilon
+67. expression -> term expression_tail
+68. term -> factor term_tail
+69. factor -> string_constant
+70. term_tail -> epsilon
+71. expression_tail -> epsilon
+72. statement_list -> epsilon
+73. statement_list -> epsilon

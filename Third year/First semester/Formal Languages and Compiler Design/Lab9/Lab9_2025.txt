@@ -1,0 +1,6 @@
+Statement: 
+Use GenAI for code optimization (for minDSL or for a classical programming language otherwise)
+Delivery time: 1 week
+Deliverables: 
+	•	1 doc – documentation – which optimizations have been addressed. Provide prompts and input/output for optimization operation
+
