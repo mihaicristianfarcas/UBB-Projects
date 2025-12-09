@@ -1,0 +1,7 @@
+Statement: 
+Use yacc to translate mini-DSL code to C
+Requirement 1: Code translation to C
+Requirement 2: Execute 2 programs in mini-DSL 
+Delivery time: 1 week
+Deliverables: 
+	•	Source code

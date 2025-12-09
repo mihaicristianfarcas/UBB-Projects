@@ -1,0 +1,28 @@
+# Example 2: Smart Home Automation with Functions
+
+threshold = 25
+
+func check_temperature():
+    if threshold > 20:
+        send_command "heater", "off"
+    end
+    if threshold < 15:
+        send_command "heater", "on"
+    end
+end
+
+on "motion_sensor" when threshold > 0:
+    send_command "light", "on"
+    check_temperature()
+end
+
+for i in 3:
+    send_command "led", "blink"
+end
+
+temp = 30
+humidity = 65
+
+if temp > 28:
+    send_command "ac", "on"
+end
