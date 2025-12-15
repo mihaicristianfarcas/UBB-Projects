@@ -1,0 +1,22 @@
+# Build artifacts
+bin/
+*.o
+*.out
+
+# Test results
+test_results.txt
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Compiled executables
+polymul_mpi
+
+# Temporary files
+*.tmp
