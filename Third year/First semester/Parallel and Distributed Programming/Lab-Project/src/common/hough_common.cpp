@@ -55,7 +55,7 @@ void LineAccumulator::merge(const LineAccumulator& other) {
 std::vector<HoughLine> LineAccumulator::find_peaks(int threshold, int min_distance) {
     std::vector<HoughLine> lines;
     
-    // Find all points above threshold
+    // Find all points above threshold with proper non-maximum suppression
     for (int r = 0; r < rho_size; ++r) {
         for (int t = 0; t < theta_size; ++t) {
             int votes = get_vote(r, t);
@@ -72,7 +72,51 @@ std::vector<HoughLine> LineAccumulator::find_peaks(int threshold, int min_distan
     // Sort by votes (descending)
     std::sort(lines.begin(), lines.end(), std::greater<HoughLine>());
     
-    return lines;
+    // Remove duplicate lines (lines that are too similar in parameter space)
+    std::vector<HoughLine> filtered_lines;
+    for (const auto& line : lines) {
+        bool is_duplicate = false;
+        
+        for (const auto& existing : filtered_lines) {
+            // Normalize both lines to have positive rho for comparison
+            double rho1 = line.rho;
+            double theta1 = line.theta;
+            if (rho1 < 0) {
+                rho1 = -rho1;
+                theta1 = theta1 + M_PI;
+                if (theta1 >= M_PI) theta1 -= M_PI;
+            }
+            
+            double rho2 = existing.rho;
+            double theta2 = existing.theta;
+            if (rho2 < 0) {
+                rho2 = -rho2;
+                theta2 = theta2 + M_PI;
+                if (theta2 >= M_PI) theta2 -= M_PI;
+            }
+            
+            // Check if lines are similar
+            double rho_diff = std::abs(rho1 - rho2);
+            double theta_diff = std::abs(theta1 - theta2);
+            
+            // Handle theta wrapping (lines at theta=0 and theta=PI are similar)
+            if (theta_diff > M_PI / 2) {
+                theta_diff = M_PI - theta_diff;
+            }
+            
+            // Lines are duplicates if they're very close in parameter space
+            if (rho_diff < 20.0 && theta_diff < 0.1) {  // 20 pixels and ~6 degrees
+                is_duplicate = true;
+                break;
+            }
+        }
+        
+        if (!is_duplicate) {
+            filtered_lines.push_back(line);
+        }
+    }
+    
+    return filtered_lines;
 }
 
 double LineAccumulator::idx_to_rho(int idx) const {
@@ -104,8 +148,22 @@ bool is_local_maximum(const LineAccumulator& acc, int rho_idx, int theta_idx, in
             int r = rho_idx + dr;
             int t = theta_idx + dt;
             
-            if (acc.get_vote(r, t) > center_votes) {
-                return false;
+            // Handle theta wrapping at boundaries
+            if (t < 0) t += acc.get_theta_size();
+            if (t >= acc.get_theta_size()) t -= acc.get_theta_size();
+            
+            // Only check if indices are valid
+            if (r >= 0 && r < acc.get_rho_size()) {
+                if (acc.get_vote(r, t) > center_votes) {
+                    return false;
+                }
+                // Also check for equal votes with stricter tie-breaking
+                else if (acc.get_vote(r, t) == center_votes) {
+                    // Use position-based tie-breaking to ensure only one peak in flat regions
+                    if (r < rho_idx || (r == rho_idx && t < theta_idx)) {
+                        return false;
+                    }
+                }
             }
         }
     }
