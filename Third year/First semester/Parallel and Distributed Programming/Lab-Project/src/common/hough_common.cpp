@@ -91,73 +91,6 @@ int LineAccumulator::theta_to_idx(double theta) const {
     return static_cast<int>(theta / theta_resolution);
 }
 
-// CircleAccumulator implementation
-CircleAccumulator::CircleAccumulator(int img_width, int img_height)
-    : width(img_width), height(img_height), current_radius(0) {
-    data.resize(width * height, 0);
-}
-
-void CircleAccumulator::reset() {
-    std::fill(data.begin(), data.end(), 0);
-}
-
-void CircleAccumulator::vote(int edge_x, int edge_y, int radius) {
-    current_radius = radius;
-    
-    // Vote for all possible circle centers
-    for (int angle = 0; angle < 360; ++angle) {
-        double theta = angle * M_PI / 180.0;
-        int cx = edge_x + static_cast<int>(radius * std::cos(theta));
-        int cy = edge_y + static_cast<int>(radius * std::sin(theta));
-        
-        if (cx >= 0 && cx < width && cy >= 0 && cy < height) {
-            data[cy * width + cx]++;
-        }
-    }
-}
-
-void CircleAccumulator::accumulate(int x, int y) {
-    if (x >= 0 && x < width && y >= 0 && y < height) {
-        data[y * width + x]++;
-    }
-}
-
-int CircleAccumulator::get_vote(int x, int y) const {
-    if (x >= 0 && x < width && y >= 0 && y < height) {
-        return data[y * width + x];
-    }
-    return 0;
-}
-
-void CircleAccumulator::merge(const CircleAccumulator& other) {
-    if (data.size() == other.data.size()) {
-        for (size_t i = 0; i < data.size(); ++i) {
-            data[i] += other.data[i];
-        }
-    }
-}
-
-std::vector<HoughCircle> CircleAccumulator::find_peaks(int radius, int threshold, int min_distance) {
-    std::vector<HoughCircle> circles;
-    
-    // Find all points above threshold
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            int votes = get_vote(x, y);
-            if (votes >= threshold) {
-                if (HoughUtils::is_local_maximum(*this, x, y, min_distance)) {
-                    circles.emplace_back(x, y, radius, votes);
-                }
-            }
-        }
-    }
-    
-    // Sort by votes (descending)
-    std::sort(circles.begin(), circles.end(), std::greater<HoughCircle>());
-    
-    return circles;
-}
-
 // HoughUtils implementation
 namespace HoughUtils {
 
@@ -172,22 +105,6 @@ bool is_local_maximum(const LineAccumulator& acc, int rho_idx, int theta_idx, in
             int t = theta_idx + dt;
             
             if (acc.get_vote(r, t) > center_votes) {
-                return false;
-            }
-        }
-    }
-    
-    return true;
-}
-
-bool is_local_maximum(const CircleAccumulator& acc, int x, int y, int window_size) {
-    int center_votes = acc.get_vote(x, y);
-    
-    for (int dy = -window_size; dy <= window_size; ++dy) {
-        for (int dx = -window_size; dx <= window_size; ++dx) {
-            if (dx == 0 && dy == 0) continue;
-            
-            if (acc.get_vote(x + dx, y + dy) > center_votes) {
                 return false;
             }
         }
@@ -217,13 +134,6 @@ void draw_lines(cv::Mat& image, const std::vector<HoughLine>& lines, const cv::S
     }
 }
 
-void draw_circles(cv::Mat& image, const std::vector<HoughCircle>& circles, const cv::Scalar& color) {
-    for (const auto& circle : circles) {
-        cv::circle(image, cv::Point(circle.x, circle.y), circle.radius, color, 2);
-        cv::circle(image, cv::Point(circle.x, circle.y), 2, cv::Scalar(0, 0, 255), -1);  // Draw center
-    }
-}
-
 void save_lines_to_file(const std::string& filename, const std::vector<HoughLine>& lines) {
     std::ofstream file(filename);
     if (!file.is_open()) {
@@ -240,28 +150,6 @@ void save_lines_to_file(const std::string& filename, const std::vector<HoughLine
              << "rho=" << lines[i].rho << ", "
              << "theta=" << lines[i].theta << ", "
              << "votes=" << lines[i].votes << std::endl;
-    }
-    
-    file.close();
-}
-
-void save_circles_to_file(const std::string& filename, const std::vector<HoughCircle>& circles) {
-    std::ofstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Error: Could not open file " << filename << " for writing" << std::endl;
-        return;
-    }
-    
-    file << "Detected Circles: " << circles.size() << std::endl;
-    file << "Format: x, y, radius (pixels), votes" << std::endl;
-    file << "----------------------------------------" << std::endl;
-    
-    for (size_t i = 0; i < circles.size(); ++i) {
-        file << "Circle " << (i + 1) << ": "
-             << "x=" << circles[i].x << ", "
-             << "y=" << circles[i].y << ", "
-             << "radius=" << circles[i].radius << ", "
-             << "votes=" << circles[i].votes << std::endl;
     }
     
     file.close();

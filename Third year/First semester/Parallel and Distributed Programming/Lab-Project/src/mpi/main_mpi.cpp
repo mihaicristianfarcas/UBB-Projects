@@ -1,6 +1,5 @@
 #include "hough_common.h"
 #include "hough_line.h"
-#include "hough_circle.h"
 #include "image_processor.h"
 #include <mpi.h>
 #include <iostream>
@@ -14,21 +13,15 @@ cv::Mat mpi_detect_edges(const cv::Mat& grayscale, int rank, int size,
                          double low_threshold, double high_threshold);
 HoughLineDetector* create_mpi_line_detector(int width, int height, int rank, int size,
                                            double rho_res, double theta_res, int thresh);
-HoughCircleDetector* create_mpi_circle_detector(int width, int height, int rank, int size,
-                                                int min_r, int max_r, int thresh);
 
 struct Config {
     std::string input_file;
     std::string output_dir;
-    std::string mode;  // "lines", "circles", "both"
     int threshold;
-    int min_radius;
-    int max_radius;
     double low_threshold;
     double high_threshold;
     
-    Config() : mode("both"), threshold(100), min_radius(10), max_radius(100),
-               low_threshold(50), high_threshold(150) {}
+    Config() : threshold(100), low_threshold(50), high_threshold(150) {}
 };
 
 bool parse_arguments(int argc, char* argv[], Config& config) {
@@ -36,10 +29,7 @@ bool parse_arguments(int argc, char* argv[], Config& config) {
         std::cerr << "Usage: mpirun -np <num_processes> " << argv[0] 
                   << " <input_image> <output_dir> [options]" << std::endl;
         std::cerr << "Options:" << std::endl;
-        std::cerr << "  --mode <lines|circles|both>  Detection mode (default: both)" << std::endl;
         std::cerr << "  --threshold <value>      Detection threshold (default: 100)" << std::endl;
-        std::cerr << "  --min-radius <value>     Minimum circle radius (default: 10)" << std::endl;
-        std::cerr << "  --max-radius <value>     Maximum circle radius (default: 100)" << std::endl;
         return false;
     }
     
@@ -50,14 +40,8 @@ bool parse_arguments(int argc, char* argv[], Config& config) {
         std::string arg = argv[i];
         if (i + 1 >= argc) break;
         
-        if (arg == "--mode") {
-            config.mode = argv[i + 1];
-        } else if (arg == "--threshold") {
+        if (arg == "--threshold") {
             config.threshold = std::stoi(argv[i + 1]);
-        } else if (arg == "--min-radius") {
-            config.min_radius = std::stoi(argv[i + 1]);
-        } else if (arg == "--max-radius") {
-            config.max_radius = std::stoi(argv[i + 1]);
         }
     }
     
@@ -101,24 +85,18 @@ int main(int argc, char* argv[]) {
     // Broadcast configuration
     int input_len = config.input_file.length();
     int output_len = config.output_dir.length();
-    int mode_len = config.mode.length();
     
     MPI_Bcast(&input_len, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&output_len, 1, MPI_INT, 0, MPI_COMM_WORLD);
-    MPI_Bcast(&mode_len, 1, MPI_INT, 0, MPI_COMM_WORLD);
     
     if (rank != 0) {
         config.input_file.resize(input_len);
         config.output_dir.resize(output_len);
-        config.mode.resize(mode_len);
     }
     
     MPI_Bcast(const_cast<char*>(config.input_file.data()), input_len, MPI_CHAR, 0, MPI_COMM_WORLD);
     MPI_Bcast(const_cast<char*>(config.output_dir.data()), output_len, MPI_CHAR, 0, MPI_COMM_WORLD);
-    MPI_Bcast(const_cast<char*>(config.mode.data()), mode_len, MPI_CHAR, 0, MPI_COMM_WORLD);
     MPI_Bcast(&config.threshold, 1, MPI_INT, 0, MPI_COMM_WORLD);
-    MPI_Bcast(&config.min_radius, 1, MPI_INT, 0, MPI_COMM_WORLD);
-    MPI_Bcast(&config.max_radius, 1, MPI_INT, 0, MPI_COMM_WORLD);
     
     if (rank == 0) {
         std::cout << "MPI Hough Transform" << std::endl;
@@ -126,7 +104,6 @@ int main(int argc, char* argv[]) {
         std::cout << "Input: " << config.input_file << std::endl;
         std::cout << "Output: " << config.output_dir << std::endl;
         std::cout << "Processes: " << size << std::endl;
-        std::cout << "Mode: " << config.mode << std::endl;
         
         // Create output directory
         std::filesystem::create_directories(config.output_dir);
@@ -180,38 +157,19 @@ int main(int argc, char* argv[]) {
     // Hough transform
     double hough_start = HoughUtils::get_time_ms();
     
-    if (config.mode == "lines" || config.mode == "both") {
-        if (rank == 0) std::cout << "Detecting lines..." << std::endl;
-        
-        HoughLineDetector* line_detector = create_mpi_line_detector(
-            img_cols, img_rows, rank, size,
-            1.0, M_PI / 180.0, config.threshold);
-        
-        std::vector<HoughLine> lines = line_detector->detect(edges);
-        delete line_detector;
-        
-        if (rank == 0) {
-            std::cout << "Found " << lines.size() << " lines" << std::endl;
-            HoughUtils::draw_lines(result, lines);
-            HoughUtils::save_lines_to_file(config.output_dir + "/lines.txt", lines);
-        }
-    }
+    if (rank == 0) std::cout << "Detecting lines..." << std::endl;
     
-    if (config.mode == "circles" || config.mode == "both") {
-        if (rank == 0) std::cout << "Detecting circles..." << std::endl;
-        
-        HoughCircleDetector* circle_detector = create_mpi_circle_detector(
-            img_cols, img_rows, rank, size,
-            config.min_radius, config.max_radius, config.threshold);
-        
-        std::vector<HoughCircle> circles = circle_detector->detect(edges);
-        delete circle_detector;
-        
-        if (rank == 0) {
-            std::cout << "Found " << circles.size() << " circles" << std::endl;
-            HoughUtils::draw_circles(result, circles);
-            HoughUtils::save_circles_to_file(config.output_dir + "/circles.txt", circles);
-        }
+    HoughLineDetector* line_detector = create_mpi_line_detector(
+        img_cols, img_rows, rank, size,
+        1.0, M_PI / 180.0, config.threshold);
+    
+    std::vector<HoughLine> lines = line_detector->detect(edges);
+    delete line_detector;
+    
+    if (rank == 0) {
+        std::cout << "Found " << lines.size() << " lines" << std::endl;
+        HoughUtils::draw_lines(result, lines);
+        HoughUtils::save_lines_to_file(config.output_dir + "/lines.txt", lines);
     }
     
     double hough_end = HoughUtils::get_time_ms();

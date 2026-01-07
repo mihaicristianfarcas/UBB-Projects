@@ -35,7 +35,7 @@ for threads in 1 2 4 8 16; do
     mkdir -p "$output_dir"
     
     ./build/hough_threaded "$TEST_IMAGE" "$output_dir" \
-        --threads $threads --mode both --threshold 150
+        --threads $threads --threshold 150
     
     if [ -f "$output_dir/timing.txt" ]; then
         echo "Results for $threads thread(s):"
@@ -55,7 +55,7 @@ for procs in 1 2 4 8; do
     mkdir -p "$output_dir"
     
     mpirun -np $procs ./build/hough_mpi "$TEST_IMAGE" "$output_dir" \
-        --mode both --threshold 150
+        --threshold 150
     
     if [ -f "$output_dir/timing.txt" ]; then
         echo "Results for $procs process(es):"

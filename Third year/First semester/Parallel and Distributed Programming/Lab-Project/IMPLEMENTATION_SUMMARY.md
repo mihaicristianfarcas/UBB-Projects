@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project implements the **Hough Transform** for detecting lines and circles in images using two parallel computing approaches:
+This project implements the **Hough Transform** for detecting lines in images using two parallel computing approaches:
 1. **Multi-threaded implementation** using C++11 threads
 2. **MPI distributed implementation** for multi-node processing
 
@@ -15,9 +15,8 @@ Both implementations include **parallelized preprocessing** (grayscale conversio
 All shared code is in `src/common/` and `include/`:
 
 - **image_processor.cpp/h**: Image I/O and preprocessing utilities using OpenCV
-- **hough_common.cpp/h**: Core data structures (LineAccumulator, CircleAccumulator, HoughLine, HoughCircle)
+- **hough_common.cpp/h**: Core data structures (LineAccumulator, HoughLine)
 - **hough_line.cpp/h**: Base line detection algorithm
-- **hough_circle.cpp/h**: Base circle detection algorithm
 
 ### Threaded Implementation (`src/threaded/`)
 
@@ -31,7 +30,6 @@ All shared code is in `src/common/` and `include/`:
 - `main_threaded.cpp`: Entry point, command-line parsing, orchestration
 - `parallel_processor.cpp`: Parallel grayscale conversion and edge detection
 - `hough_line_threaded.cpp`: Threaded line detection
-- `hough_circle_threaded.cpp`: Threaded circle detection
 
 ### MPI Implementation (`src/mpi/`)
 
@@ -46,7 +44,6 @@ All shared code is in `src/common/` and `include/`:
 - `main_mpi.cpp`: Entry point with MPI initialization
 - `parallel_processor.cpp`: MPI-based parallel preprocessing
 - `hough_line_mpi.cpp`: MPI line detection with collective operations
-- `hough_circle_mpi.cpp`: MPI circle detection with reduction
 
 ## Algorithm Details
 
@@ -66,28 +63,6 @@ All shared code is in `src/common/` and `include/`:
 3. **Peak Detection**:
    - Find local maxima above threshold
    - Non-maximum suppression in accumulator space
-   - Sort by vote count
-
-### Circle Detection (Circular Hough Transform)
-
-1. **Parameter Space**: (x, y, r) where:
-   - (x, y): circle center coordinates
-   - r: radius [min_radius, max_radius]
-
-2. **Voting Process** (for each radius):
-   - For each edge pixel (ex, ey)
-   - For angles 0° to 360°
-   - Calculate possible center: cx = ex + r·cos(θ), cy = ey + r·sin(θ)
-   - Increment accumulator[cx, cy]
-
-3. **Memory Optimization**:
-   - Process one radius at a time
-   - Clear accumulator between radii
-   - Reduces memory from O(width × height × radii) to O(width × height)
-
-4. **Peak Detection**:
-   - Find local maxima for each radius
-   - Combine results from all radii
    - Sort by vote count
 
 ## Parallelization Details
@@ -181,12 +156,10 @@ make -j
 ### Test Images (`generate_test_images.py`)
 
 1. **lines.png**: Simple horizontal, vertical, and diagonal lines
-2. **circles.png**: Circles of various sizes
-3. **mixed.png**: Both lines and circles
-4. **complex.png**: Grid with circles and noise
-5. **diagonal_lines.png**: Lines at various angles (edge case testing)
-6. **concentric_circles.png**: Overlapping circles
-7. **house.png**: Real-world-like scene
+2. **mixed.png**: Complex scene with multiple lines
+3. **complex.png**: Grid with noise
+4. **diagonal_lines.png**: Lines at various angles (edge case testing)
+5. **house.png**: Real-world-like scene
 
 ### Test Scripts
 
@@ -198,8 +171,8 @@ make -j
 
 Each run produces:
 1. **edges.png**: Canny edge detection result
-2. **result.png**: Original image with detected shapes drawn
-3. **lines.txt** or **circles.txt**: Detection parameters
+2. **result.png**: Original image with detected lines drawn
+3. **lines.txt**: Detection parameters
 4. **timing.txt**: Performance metrics
 
 ## Key Implementation Decisions
@@ -207,9 +180,8 @@ Each run produces:
 1. **Used OpenCV**: Professional-grade image I/O and preprocessing
 2. **Accumulator merging**: Thread-local accumulators to avoid locks during voting
 3. **Non-maximum suppression**: Prevents duplicate detections
-4. **One radius at a time**: Memory-efficient circle detection
-5. **Factory pattern**: Clean separation between serial and parallel implementations
-6. **MPI collective operations**: Efficient scatter/gather/reduce instead of point-to-point
+4. **Factory pattern**: Clean separation between serial and parallel implementations
+5. **MPI collective operations**: Efficient scatter/gather/reduce instead of point-to-point
 
 ## Preprocessing Answer
 
@@ -238,9 +210,8 @@ Possible improvements:
 2. **Hybrid MPI+threads** for multi-node multi-core systems
 3. **Probabilistic Hough Transform** for better performance
 4. **Automatic threshold selection** using image statistics
-5. **Additional shape detection** (ellipses, rectangles)
-6. **Web interface** for easy visualization
-7. **Batch processing** for multiple images
+5. **Web interface** for easy visualization
+6. **Batch processing** for multiple images
 
 ## References
 

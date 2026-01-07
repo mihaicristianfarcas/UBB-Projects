@@ -54,34 +54,34 @@ This creates several test images in the `test_images/` directory.
 
 Detect lines:
 ```bash
-./build/hough_threaded test_images/lines.png output/threaded/lines --threads 4 --mode lines
+./build/hough_threaded test_images/lines.png output/threaded/lines --threads 4
 ```
 
-Detect circles:
+Detect diagonal lines:
 ```bash
-./build/hough_threaded test_images/circles.png output/threaded/circles --threads 4 --mode circles --min-radius 30 --max-radius 110
+./build/hough_threaded test_images/diagonal_lines.png output/threaded/diagonal --threads 4
 ```
 
-Detect both:
+Detect lines in complex scene:
 ```bash
-./build/hough_threaded test_images/mixed.png output/threaded/mixed --threads 4 --mode both
+./build/hough_threaded test_images/mixed.png output/threaded/mixed --threads 4
 ```
 
 ### Run MPI Version
 
 Detect lines:
 ```bash
-mpirun -np 4 ./build/hough_mpi test_images/lines.png output/mpi/lines --mode lines
+mpirun -np 4 ./build/hough_mpi test_images/lines.png output/mpi/lines
 ```
 
-Detect circles:
+Detect diagonal lines:
 ```bash
-mpirun -np 4 ./build/hough_mpi test_images/circles.png output/mpi/circles --mode circles --min-radius 30 --max-radius 110
+mpirun -np 4 ./build/hough_mpi test_images/diagonal_lines.png output/mpi/diagonal
 ```
 
-Detect both:
+Detect lines in complex scene:
 ```bash
-mpirun -np 4 ./build/hough_mpi test_images/mixed.png output/mpi/mixed --mode both
+mpirun -np 4 ./build/hough_mpi test_images/mixed.png output/mpi/mixed
 ```
 
 ## Running All Tests
@@ -108,8 +108,8 @@ This will test both implementations with varying numbers of threads/processes an
 
 Each run produces:
 - `edges.png` - Edge-detected image (Canny edges)
-- `result.png` - Original image with detected lines/circles drawn
-- `lines.txt` or `circles.txt` - Detected parameters (rho, theta, votes for lines; x, y, radius, votes for circles)
+- `result.png` - Original image with detected lines drawn
+- `lines.txt` - Detected parameters (rho, theta, votes)
 - `timing.txt` - Performance metrics (preprocessing time, Hough time, total time)
 
 ## Command-Line Options
@@ -120,10 +120,7 @@ Each run produces:
 
 Options:
   --threads <num>          Number of threads (default: hardware concurrency)
-  --mode <lines|circles|both>  Detection mode (default: both)
   --threshold <value>      Detection threshold (default: 100)
-  --min-radius <value>     Minimum circle radius (default: 10)
-  --max-radius <value>     Maximum circle radius (default: 100)
 ```
 
 ### MPI Version
@@ -131,23 +128,18 @@ Options:
 mpirun -np <num_processes> ./build/hough_mpi <input_image> <output_dir> [options]
 
 Options:
-  --mode <lines|circles|both>  Detection mode (default: both)
   --threshold <value>      Detection threshold (default: 100)
-  --min-radius <value>     Minimum circle radius (default: 10)
-  --max-radius <value>     Maximum circle radius (default: 100)
 ```
 
 ## Tips
 
-1. **Threshold tuning**: Lower thresholds detect more shapes but may include false positives. Start with 100 and adjust.
+1. **Threshold tuning**: Lower thresholds detect more lines but may include false positives. Start with 100 and adjust.
 
-2. **Circle radius range**: Set appropriate min/max radius based on expected circle sizes in your image.
+2. **Thread count**: For threaded version, use the number of physical CPU cores for best performance.
 
-3. **Thread count**: For threaded version, use the number of physical CPU cores for best performance.
+3. **MPI processes**: For MPI version, use 2-8 processes on a single machine. For clusters, match the number of nodes.
 
-4. **MPI processes**: For MPI version, use 2-8 processes on a single machine. For clusters, match the number of nodes.
-
-5. **Image preprocessing**: The implementation includes automatic grayscale conversion and Canny edge detection.
+4. **Image preprocessing**: The implementation includes automatic grayscale conversion and Canny edge detection.
 
 ## Troubleshooting
 
@@ -159,14 +151,13 @@ Options:
 - Install MPI: `sudo apt-get install libopenmpi-dev openmpi-bin`
 - Or on macOS: `brew install open-mpi`
 
-**No shapes detected:**
+**No lines detected:**
 - Try lowering the threshold value
 - Check that the input image has clear edges
-- Verify the radius range for circles
+- Ensure the image contains straight lines
 
 **Poor performance:**
 - Increase number of threads/processes
-- Reduce the radius range for circle detection
 - Use smaller images for testing
 
 ## Next Steps

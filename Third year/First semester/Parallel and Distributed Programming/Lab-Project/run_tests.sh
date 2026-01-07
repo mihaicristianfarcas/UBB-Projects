@@ -28,49 +28,49 @@ mkdir -p output/mpi
 echo ""
 echo "Test 1: Line detection (Threaded, 4 threads)"
 echo "---------------------------------------------"
-./build/hough_threaded test_images/lines.png output/threaded/lines --threads 4 --mode lines --threshold 100
+./build/hough_threaded test_images/lines.png output/threaded/lines --threads 4 --threshold 100
 
-# Test 2: Circles detection with threaded version
+# Test 2: Diagonal lines detection with threaded version
 echo ""
-echo "Test 2: Circle detection (Threaded, 4 threads)"
-echo "-----------------------------------------------"
-./build/hough_threaded test_images/circles.png output/threaded/circles --threads 4 --mode circles --threshold 50 --min-radius 30 --max-radius 110
+echo "Test 2: Diagonal lines detection (Threaded, 4 threads)"
+echo "--------------------------------------------------------"
+./build/hough_threaded test_images/diagonal_lines.png output/threaded/diagonal --threads 4 --threshold 80
 
-# Test 3: Mixed detection with threaded version
+# Test 3: Mixed scene detection with threaded version
 echo ""
-echo "Test 3: Mixed detection (Threaded, 4 threads)"
-echo "----------------------------------------------"
-./build/hough_threaded test_images/mixed.png output/threaded/mixed --threads 4 --mode both --threshold 80
+echo "Test 3: Mixed scene detection (Threaded, 4 threads)"
+echo "----------------------------------------------------"
+./build/hough_threaded test_images/mixed.png output/threaded/mixed --threads 4 --threshold 80
 
 # Test 4: Lines detection with MPI version
 echo ""
 echo "Test 4: Line detection (MPI, 4 processes)"
 echo "------------------------------------------"
-mpirun -np 4 ./build/hough_mpi test_images/lines.png output/mpi/lines --mode lines --threshold 100
+mpirun -np 4 ./build/hough_mpi test_images/lines.png output/mpi/lines --threshold 100
 
-# Test 5: Circles detection with MPI version
+# Test 5: Diagonal lines detection with MPI version
 echo ""
-echo "Test 5: Circle detection (MPI, 4 processes)"
-echo "--------------------------------------------"
-mpirun -np 4 ./build/hough_mpi test_images/circles.png output/mpi/circles --mode circles --threshold 50 --min-radius 30 --max-radius 110
+echo "Test 5: Diagonal lines detection (MPI, 4 processes)"
+echo "----------------------------------------------------"
+mpirun -np 4 ./build/hough_mpi test_images/diagonal_lines.png output/mpi/diagonal --threshold 80
 
-# Test 6: Mixed detection with MPI version
+# Test 6: Mixed scene detection with MPI version
 echo ""
-echo "Test 6: Mixed detection (MPI, 4 processes)"
-echo "-------------------------------------------"
-mpirun -np 4 ./build/hough_mpi test_images/mixed.png output/mpi/mixed --mode both --threshold 80
+echo "Test 6: Mixed scene detection (MPI, 4 processes)"
+echo "-------------------------------------------------"
+mpirun -np 4 ./build/hough_mpi test_images/mixed.png output/mpi/mixed --threshold 80
 
 # Test 7: Complex image with threaded version
 echo ""
 echo "Test 7: Complex image (Threaded, 8 threads)"
 echo "--------------------------------------------"
-./build/hough_threaded test_images/complex.png output/threaded/complex --threads 8 --mode both --threshold 150
+./build/hough_threaded test_images/complex.png output/threaded/complex --threads 8 --threshold 150
 
 # Test 8: House scene with MPI version
 echo ""
 echo "Test 8: House scene (MPI, 2 processes)"
 echo "---------------------------------------"
-mpirun -np 2 ./build/hough_mpi test_images/house.png output/mpi/house --mode both --threshold 80
+mpirun -np 2 ./build/hough_mpi test_images/house.png output/mpi/house --threshold 80
 
 echo ""
 echo "======================================"
@@ -83,6 +83,6 @@ echo ""
 echo "Each test directory contains:"
 echo "  - edges.png: Edge-detected image"
 echo "  - result.png: Annotated result"
-echo "  - lines.txt or circles.txt: Detection parameters"
+echo "  - lines.txt: Detection parameters"
 echo "  - timing.txt: Performance metrics"
 

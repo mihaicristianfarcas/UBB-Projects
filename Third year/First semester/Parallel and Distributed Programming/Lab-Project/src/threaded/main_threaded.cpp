@@ -1,6 +1,5 @@
 #include "hough_common.h"
 #include "hough_line.h"
-#include "hough_circle.h"
 #include "image_processor.h"
 #include <iostream>
 #include <string>
@@ -14,23 +13,17 @@ cv::Mat parallel_detect_edges(const cv::Mat& grayscale, int num_threads,
                                double low_threshold, double high_threshold);
 HoughLineDetector* create_threaded_line_detector(int width, int height, int num_threads,
                                                 double rho_res, double theta_res, int thresh);
-HoughCircleDetector* create_threaded_circle_detector(int width, int height, int num_threads,
-                                                     int min_r, int max_r, int thresh);
 
 struct Config {
     std::string input_file;
     std::string output_dir;
     int num_threads;
-    std::string mode;  // "lines", "circles", "both"
     int threshold;
-    int min_radius;
-    int max_radius;
     double low_threshold;
     double high_threshold;
     
     Config() : num_threads(std::thread::hardware_concurrency()),
-               mode("both"), threshold(100), min_radius(10), max_radius(100),
-               low_threshold(50), high_threshold(150) {}
+               threshold(100), low_threshold(50), high_threshold(150) {}
 };
 
 bool parse_arguments(int argc, char* argv[], Config& config) {
@@ -38,10 +31,7 @@ bool parse_arguments(int argc, char* argv[], Config& config) {
         std::cerr << "Usage: " << argv[0] << " <input_image> <output_dir> [options]" << std::endl;
         std::cerr << "Options:" << std::endl;
         std::cerr << "  --threads <num>          Number of threads (default: hardware concurrency)" << std::endl;
-        std::cerr << "  --mode <lines|circles|both>  Detection mode (default: both)" << std::endl;
         std::cerr << "  --threshold <value>      Detection threshold (default: 100)" << std::endl;
-        std::cerr << "  --min-radius <value>     Minimum circle radius (default: 10)" << std::endl;
-        std::cerr << "  --max-radius <value>     Maximum circle radius (default: 100)" << std::endl;
         return false;
     }
     
@@ -54,14 +44,8 @@ bool parse_arguments(int argc, char* argv[], Config& config) {
         
         if (arg == "--threads") {
             config.num_threads = std::stoi(argv[i + 1]);
-        } else if (arg == "--mode") {
-            config.mode = argv[i + 1];
         } else if (arg == "--threshold") {
             config.threshold = std::stoi(argv[i + 1]);
-        } else if (arg == "--min-radius") {
-            config.min_radius = std::stoi(argv[i + 1]);
-        } else if (arg == "--max-radius") {
-            config.max_radius = std::stoi(argv[i + 1]);
         }
     }
     
@@ -90,7 +74,6 @@ int main(int argc, char* argv[]) {
     std::cout << "Input: " << config.input_file << std::endl;
     std::cout << "Output: " << config.output_dir << std::endl;
     std::cout << "Threads: " << config.num_threads << std::endl;
-    std::cout << "Mode: " << config.mode << std::endl;
     
     // Create output directory
     std::filesystem::create_directories(config.output_dir);
@@ -128,41 +111,21 @@ int main(int argc, char* argv[]) {
     // Hough transform
     double hough_start = HoughUtils::get_time_ms();
     
-    if (config.mode == "lines" || config.mode == "both") {
-        std::cout << "Detecting lines..." << std::endl;
-        HoughLineDetector* line_detector = create_threaded_line_detector(
-            image.cols, image.rows, config.num_threads, 
-            1.0, M_PI / 180.0, config.threshold);
-        
-        std::vector<HoughLine> lines = line_detector->detect(edges);
-        delete line_detector;
-        
-        std::cout << "Found " << lines.size() << " lines" << std::endl;
-        
-        // Draw lines
-        HoughUtils::draw_lines(result, lines);
-        
-        // Save results
-        HoughUtils::save_lines_to_file(config.output_dir + "/lines.txt", lines);
-    }
+    std::cout << "Detecting lines..." << std::endl;
+    HoughLineDetector* line_detector = create_threaded_line_detector(
+        image.cols, image.rows, config.num_threads, 
+        1.0, M_PI / 180.0, config.threshold);
     
-    if (config.mode == "circles" || config.mode == "both") {
-        std::cout << "Detecting circles..." << std::endl;
-        HoughCircleDetector* circle_detector = create_threaded_circle_detector(
-            image.cols, image.rows, config.num_threads,
-            config.min_radius, config.max_radius, config.threshold);
-        
-        std::vector<HoughCircle> circles = circle_detector->detect(edges);
-        delete circle_detector;
-        
-        std::cout << "Found " << circles.size() << " circles" << std::endl;
-        
-        // Draw circles
-        HoughUtils::draw_circles(result, circles);
-        
-        // Save results
-        HoughUtils::save_circles_to_file(config.output_dir + "/circles.txt", circles);
-    }
+    std::vector<HoughLine> lines = line_detector->detect(edges);
+    delete line_detector;
+    
+    std::cout << "Found " << lines.size() << " lines" << std::endl;
+    
+    // Draw lines
+    HoughUtils::draw_lines(result, lines);
+    
+    // Save results
+    HoughUtils::save_lines_to_file(config.output_dir + "/lines.txt", lines);
     
     double hough_end = HoughUtils::get_time_ms();
     double hough_time = hough_end - hough_start;

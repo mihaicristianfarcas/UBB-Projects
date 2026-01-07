@@ -32,6 +32,6 @@ echo "  - build/hough_threaded"
 echo "  - build/hough_mpi"
 echo ""
 echo "To run:"
-echo "  ./build/hough_threaded <input> <output_dir> --threads 4 --mode both"
-echo "  mpirun -np 4 ./build/hough_mpi <input> <output_dir> --mode both"
+echo "  ./build/hough_threaded <input> <output_dir> --threads 4"
+echo "  mpirun -np 4 ./build/hough_mpi <input> <output_dir>"
 

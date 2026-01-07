@@ -20,7 +20,6 @@ set(COMMON_SOURCES
     src/common/image_processor.cpp
     src/common/hough_common.cpp
     src/common/hough_line.cpp
-    src/common/hough_circle.cpp
 )
 
 # Threaded version
@@ -28,7 +27,6 @@ add_executable(hough_threaded
     src/threaded/main_threaded.cpp
     src/threaded/parallel_processor.cpp
     src/threaded/hough_line_threaded.cpp
-    src/threaded/hough_circle_threaded.cpp
     ${COMMON_SOURCES}
 )
 target_link_libraries(hough_threaded ${OpenCV_LIBS} pthread)
@@ -39,7 +37,6 @@ add_executable(hough_mpi
     src/mpi/main_mpi.cpp
     src/mpi/parallel_processor.cpp
     src/mpi/hough_line_mpi.cpp
-    src/mpi/hough_circle_mpi.cpp
     ${COMMON_SOURCES}
 )
 target_link_libraries(hough_mpi ${OpenCV_LIBS} MPI::MPI_CXX)

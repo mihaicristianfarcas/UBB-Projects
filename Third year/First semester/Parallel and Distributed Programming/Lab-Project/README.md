@@ -1,11 +1,10 @@
 # Hough Transform - Parallel Implementation
 
-This project implements the Hough transform for line and circle detection with two parallel approaches: multi-threading and MPI distributed computing.
+This project implements the Hough transform for line detection with two parallel approaches: multi-threading and MPI distributed computing.
 
 ## Features
 
 - **Line Detection**: Standard Hough transform for detecting straight lines
-- **Circle Detection**: Circular Hough transform for detecting circles
 - **Parallel Processing**: Both preprocessing (grayscale conversion, edge detection) and Hough transform are parallelized
 - **Two Implementations**: 
   - Multi-threaded (C++11 threads) for shared-memory systems
@@ -57,15 +56,12 @@ This will create two executables:
 
 Options:
   --threads <num>          Number of threads (default: hardware concurrency)
-  --mode <lines|circles|both>  Detection mode (default: both)
   --threshold <value>      Detection threshold (default: 100)
-  --min-radius <value>     Minimum circle radius (default: 10)
-  --max-radius <value>     Maximum circle radius (default: 100)
 ```
 
 Example:
 ```bash
-./hough_threaded ../test_images/sample.jpg ../output --threads 8 --mode both
+./hough_threaded ../test_images/sample.jpg ../output --threads 8
 ```
 
 ### MPI Version
@@ -74,23 +70,20 @@ Example:
 mpirun -np <num_processes> ./hough_mpi <input_image> <output_dir> [OPTIONS]
 
 Options:
-  --mode <lines|circles|both>  Detection mode (default: both)
   --threshold <value>      Detection threshold (default: 100)
-  --min-radius <value>     Minimum circle radius (default: 10)
-  --max-radius <value>     Maximum circle radius (default: 100)
 ```
 
 Example:
 ```bash
-mpirun -np 4 ./hough_mpi ../test_images/sample.jpg ../output --mode lines
+mpirun -np 4 ./hough_mpi ../test_images/sample.jpg ../output
 ```
 
 ## Output
 
 Both programs generate:
 1. `edges.png` - Edge-detected image
-2. `result.png` - Annotated image with detected lines/circles
-3. `results.txt` - List of detected lines/circles with parameters
+2. `result.png` - Annotated image with detected lines
+3. `lines.txt` - List of detected lines with parameters
 4. `timing.txt` - Performance metrics (preprocessing, Hough transform, total time)
 
 ## Algorithm Overview
@@ -104,11 +97,6 @@ Both programs generate:
 - Parameter space: (ρ, θ) where ρ is distance from origin, θ is angle
 - For each edge pixel, vote in accumulator space for all possible lines
 - Find peaks in accumulator to detect lines
-
-### Circle Detection
-- Parameter space: (x, y, r) where (x,y) is center, r is radius
-- For each edge pixel, vote for possible circle centers
-- Process one radius at a time to optimize memory usage
 
 ## Performance
 
@@ -129,25 +117,22 @@ Lab-Project/
 ├── CMakeLists.txt
 ├── README.md
 ├── include/
-│   ├── hough_circle.h
 │   ├── hough_common.h
 │   ├── hough_line.h
 │   └── image_processor.h
 ├── src/
 │   ├── common/
-│   │   ├── hough_circle.cpp
 │   │   ├── hough_line.cpp
+│   │   ├── hough_common.cpp
 │   │   └── image_processor.cpp
 │   ├── threaded/
 │   │   ├── main_threaded.cpp
 │   │   ├── parallel_processor.cpp
-│   │   ├── hough_line_threaded.cpp
-│   │   └── hough_circle_threaded.cpp
+│   │   └── hough_line_threaded.cpp
 │   └── mpi/
 │       ├── main_mpi.cpp
 │       ├── parallel_processor.cpp
-│       ├── hough_line_mpi.cpp
-│       └── hough_circle_mpi.cpp
+│       └── hough_line_mpi.cpp
 ├── test_images/
 └── output/
 ```
