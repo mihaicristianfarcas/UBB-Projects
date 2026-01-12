@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/dsm_main.dir/main.cpp.o CMakeFiles/dsm_main.dir/dsm.cpp.o -o dsm_main  /opt/homebrew/Cellar/open-mpi/5.0.9/lib/libmpi.dylib
