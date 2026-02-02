@@ -1,0 +1,15 @@
+{
+	"expo": {
+		"name": "master",
+		"slug": "master",
+		"version": "1.0.0",
+		"scheme": "master",
+		"platforms": ["ios", "android"],
+		"ios": {
+			"bundleIdentifier": "com.master.app"
+		},
+		"android": {
+			"package": "com.master.app"
+		}
+	}
+}
