@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Initialize') {
+            steps {
+                cleanWs()
+                git branch: 'main', url: 'http://gitea:3000/admin/ssvv-lab2-takehome.git'
+                sh 'tree'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test -Dtest=GiveBonusExcelTests'
+            }
+        }
+    }
+
+    post {
+        always {
+            allure includeProperties: false, 
+                   jdk: '', 
+                   results: [[path: 'target/allure-results']]
+        }
+    }
+}
