@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Initialize') {
+            steps {
+                cleanWs()
+                git branch: 'main', url: 'http://gitea:3000/admin/ssvv-lab3-inclass.git'
+                sh 'tree'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test -Dtest=SetTest'
+            }
+        }
+    }
+
+    post {
+        always {
+            allure includeProperties: false, 
+                   jdk: '', 
+                   results: [[path: 'target/allure-results']]
+        }
+    }
+}
+
+
